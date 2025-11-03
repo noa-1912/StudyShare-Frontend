@@ -1,0 +1,9 @@
+<h1>ההצעות</h1>
+
+@for (suggestion of suggestionArr; track $index) {
+  <div class="suggestion">
+    <h2>כותרת: {{ suggestion.user }}</h2>
+    <h3>תוכן: {{ suggestion.content }}</h3>
+    <h3>תמונה {{ suggestion.imagePath }}</h3>
+  </div>
+}
