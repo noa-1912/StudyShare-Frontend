@@ -9,6 +9,7 @@ import { SuggestionModel } from '../models/suggestion.model';
 
 
 export class SuggestionService {
+  
   constructor(private _httpClient: HttpClient) { }
   
   getById(id: number): Observable<SuggestionModel> {
@@ -23,7 +24,9 @@ export class SuggestionService {
     const userId = user.id;
     return this._httpClient.get<SuggestionModel[]>(`http://localhost:8080/api/Task/byuserId/${userId}`);
   }
-
+  add(suggestion: SuggestionModel): Observable<SuggestionModel> {
+    return this._httpClient.post<SuggestionModel>(`http://localhost:8080/api/suggesion/uploadSuggestion`, suggestion);
+  }
   
 
 

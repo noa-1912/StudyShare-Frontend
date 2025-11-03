@@ -1,0 +1,79 @@
+/* כל הטופס */
+form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f9fbff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  direction: rtl;
+  font-family: 'Heebo', sans-serif;
+}
+
+/* כותרות */
+form h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #1a2a5c;
+  font-size: 24px;
+}
+
+/* תוויות */
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #2b3b7c;
+  font-weight: 600;
+}
+
+/* שדות קלט */
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cdd5ec;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #ffffff;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #3b6efb;
+  box-shadow: 0 0 4px rgba(59, 110, 251, 0.3);
+}
+
+/* טקסט ארוך */
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* כפתור שליחה */
+button {
+  margin-top: 25px;
+  background-color: #3b6efb;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #305ae0;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}

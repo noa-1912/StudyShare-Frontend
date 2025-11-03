@@ -1,9 +1,12 @@
-<h1>ההצעות</h1>
+<h1>כל הפתרונות</h1>
 
 @for (suggestion of suggestionArr; track $index) {
-  <div class="suggestion">
-    <h2>כותרת: {{ suggestion.user }}</h2>
-    <h3>תוכן: {{ suggestion.content }}</h3>
-    <h3>תמונה {{ suggestion.imagePath }}</h3>
-  </div>
-}
+<div class="suggestion">
+  <h2>שם: {{ suggestion.user?.name }}</h2>//שאלה לגבי ה־? פה
+  <h3>תוכן: {{ suggestion.content }}</h3>
+  <!-- <img [src]="getImageSrc(suggestion.image)" alt="תמונה" class="image-preview" (error)="onImageError($event)" /> -->
+
+</div>
+
+
+}<button (click)="addSuggestion1()">הוסף פתרון</button>

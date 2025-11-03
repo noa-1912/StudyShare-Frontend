@@ -1,9 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SuggestionList } from './components/suggestion-list/suggestion-list';
+import { AddSuggestion } from "./components/add-suggestion/add-suggestion";
+
 @Component({
   selector: 'app-root',
-  imports: [ SuggestionList],
+  imports: [SuggestionList],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

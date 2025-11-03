@@ -6,15 +6,16 @@ export class SuggestionModel {
     id!: number
     page!: number
     exercise!: number
-    section!: number
-    subSection!: number
+    section?: number
+    subSection?: number
     content!: string
     uploadDate!: Date
     imagePath!: string
-    user!: UsersModel
-    book!: BooksModel
+    user?: UsersModel//לבדוק
+    book?: BooksModel//לבדוק
+    image?: string///לבדוק
 
-    public constructor(page: number, exercise: number, section: number, subSection: number, content: string, uploadDate: Date, imagePath: string, user: UsersModel, book: BooksModel) {
+    public constructor(page: number, exercise: number, section: number, subSection: number, content: string, uploadDate: Date, imagePath: string, user: UsersModel, book: BooksModel,image:string) {
         this.page = page
         this.exercise = exercise
         this.section = section
@@ -24,6 +25,7 @@ export class SuggestionModel {
         this.imagePath = imagePath
         this.user = user
         this.book = book
+        this.image=image
     }
 
 }

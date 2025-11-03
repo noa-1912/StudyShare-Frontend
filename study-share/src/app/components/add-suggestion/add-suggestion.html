@@ -1,0 +1,22 @@
+
+<form #AddForm="ngForm">
+  <label for="page">עמוד:</label>
+  <input type="number" id="page" [(ngModel)]="newSuggestion.page" name="page" required />
+
+  <label for="exercise">תרגיל:</label>
+  <input type="number" id="exercise" [(ngModel)]="newSuggestion.exercise" name="exercise" required />
+
+  <label for="section">סעיף:</label>
+  <input type="number" id="section" [(ngModel)]="newSuggestion.section" name="section" required />
+
+  <label for="subSection">תת-סעיף:</label>
+  <input type="number" id="subSection" [(ngModel)]="newSuggestion.subSection" name="subSection" required />
+
+  <label for="content">תוכן פתרון:</label>
+  <textarea id="content" [(ngModel)]="newSuggestion.content" name="content" required></textarea>
+
+  <!-- <label for="image">תמונה (אופציונלי):</label>
+  <input type="file" id="image" (change)="onImageSelected($event)" /> -->
+
+ <button (click)="addSuggestion()" >הוספת פתרון</button>
+</form>

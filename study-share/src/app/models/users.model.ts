@@ -21,5 +21,6 @@ export class UsersModel {
         this.password = password
         this.date = date
     }
+    public constructorEmpty() { }
 
 }
