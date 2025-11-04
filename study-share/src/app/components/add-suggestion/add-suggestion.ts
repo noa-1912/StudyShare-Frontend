@@ -15,9 +15,9 @@ import { BooksModel } from '../../models/books.model';
   styleUrl: './add-suggestion.css',
 })
 export class AddSuggestion {
-
+public selectedFile?: File;
   public newSuggestion:SuggestionModel = {
-    id: 0,
+    
     page: 0,
     exercise: 0,  
     section: 0,
@@ -26,8 +26,8 @@ export class AddSuggestion {
     uploadDate: new Date(),
     imagePath: '',//לבדוק
     user: undefined,//לבדוק
-    book: undefined,//לבדוק
-    image: ''
+    book: undefined//לבדוק
+    
   }  ;
 
 
@@ -35,9 +35,25 @@ export class AddSuggestion {
 
 
     constructor(private router: Router, private _suggestionService: SuggestionService  ) { }
-  addSuggestion() {
+ previewUrl: string | ArrayBuffer | null = null;
+
+onImageSelected(ev: any) {
+  const file = ev.target.files?.[0];
+  if (file) {
+    this.selectedFile = file;
+
+    // יצירת תצוגה מקדימה
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewUrl = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+    addSuggestion() {
     // this.onAddTask.emit(this.newTask);
-    this._suggestionService.add(this.newSuggestion).subscribe({
+    this._suggestionService.add(this.newSuggestion,this.selectedFile).subscribe({
       next: (res) => {
         console.log('Suggestion added successfully:', res);
         this.router.navigate(['/suggestion-list']);

@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
-import { AddSuggestion } from './components/add-suggestion/add-suggestion';
 import { SuggestionList } from './components/suggestion-list/suggestion-list';
+import { AddSuggestion } from './components/add-suggestion/add-suggestion';
+
 export const routes: Routes = [
- {path: 'add-suggestion', component: AddSuggestion},
-{path:'suggestion-list',component:AddSuggestion}];
+  { path: '', redirectTo: 'suggestion-list', pathMatch: 'full' },
+  { path: 'suggestion-list', component: SuggestionList },
+  { path: 'add-suggestion', component: AddSuggestion }, // ✅ הוספת הנתיב הזה
+];

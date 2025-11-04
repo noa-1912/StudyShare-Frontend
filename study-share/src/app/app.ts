@@ -5,9 +5,10 @@ import { AddSuggestion } from "./components/add-suggestion/add-suggestion";
 
 @Component({
   selector: 'app-root',
-  imports: [SuggestionList],
+  standalone: true, // חשוב!
+  imports: [RouterOutlet], // ✅ הוספנו את AddSuggestion
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css' // ✅ הורדנו את הרווח
 })
 export class App {
   protected readonly title = signal('study-share');

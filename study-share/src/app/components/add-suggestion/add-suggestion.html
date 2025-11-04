@@ -15,8 +15,11 @@
   <label for="content">תוכן פתרון:</label>
   <textarea id="content" [(ngModel)]="newSuggestion.content" name="content" required></textarea>
 
-  <!-- <label for="image">תמונה (אופציונלי):</label>
-  <input type="file" id="image" (change)="onImageSelected($event)" /> -->
-
+  <label for="image">תמונה (אופציונלי):</label>
+  <input type="file" id="image" (change)="onImageSelected($event)" />
+<div *ngIf="previewUrl" class="preview-container">
+    <h4>תצוגה מקדימה:</h4>
+    <img [src]="previewUrl" alt="תצוגת תמונה" class="preview-img" />
+  </div>
  <button (click)="addSuggestion()" >הוספת פתרון</button>
 </form>

@@ -26,13 +26,10 @@ public suggestionArr: SuggestionModel[]=[];
 // });
   ngOnInit(): void {
     this._suggestionService.getAll().subscribe({
-      next: (res) => {
-        this.suggestionArr = res;
-        const count = this.suggestionArr.length; // מספר המשימות
-   },
-      error: (err) => {
-        console.error('Error loading suggestion:', err);
-      }
+     next: (res) => (this.suggestionArr = res || []),
+      error: (err) => 
+        console.error('Error loading suggestion:', err)
+      
     })
   } 
    addSuggestion1(): void {
@@ -49,5 +46,8 @@ public suggestionArr: SuggestionModel[]=[];
 // onImageError(event: any) {
 //   event.target.src = 'assets/broken-image.jpg';
 // }
+onImageError(event: any) {
+  event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
+}
 
 }
