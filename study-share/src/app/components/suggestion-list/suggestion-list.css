@@ -1,61 +1,96 @@
-/* עיצוב כללי לרקע ולכותרת */
+:host {
+  display: block;
+  direction: rtl;
+  font-family: 'Heebo', sans-serif;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
 h1 {
   text-align: center;
-  color: #2a3a58;
-  margin-top: 30px;
-  font-size: 2rem;
-  font-weight: 700;
+  color: #1e3a8a;
+  font-size: 30px;
+  margin-bottom: 40px;
   letter-spacing: 1px;
 }
 
-/* מעטפת כללית */
+/* כל כרטיס */
 .suggestion {
-  background: #f9fbff;
-  border: 1px solid #dbe4f3;
-  border-radius: 15px;
-  padding: 20px 25px;
-  margin: 15px auto;
-  width: 80%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px 30px;
+  margin: 20px auto;
   max-width: 700px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* אפקט ריחוף עדין */
 .suggestion:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* שם המשתמש */
 .suggestion h2 {
-  color: #3b5998;
-  font-size: 1.3rem;
+  color: #1e3a8a;
+  font-size: 20px;
   margin-bottom: 10px;
-  font-weight: 600;
 }
 
-/* תוכן ההצעה */
 .suggestion h3 {
-  color: #444;
-  font-size: 1.1rem;
-  font-weight: 400;
-  margin: 6px 0;
+  color: #374151;
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
 /* תמונה */
-.suggestion img {
+.image-preview {
   display: block;
-  margin-top: 10px;
-  border-radius: 10px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 400px;
   height: auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  margin: 10px auto 15px;
+  border-radius: 10px;
+  border: 2px solid #c7d2fe;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* עיצוב רקע עמוד */
-body {
-  background-color: #eef3fa;
-  font-family: "Assistant", "Alef", sans-serif;
-  direction: rtl;
+/* כפתור "הוסף פתרון" */
+button {
+  display: block;
+  margin: 40px auto 0;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transform: translateY(-2px);
+}
+
+/* תצוגה רספונסיבית */
+@media (max-width: 600px) {
+  .suggestion {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .suggestion h2 {
+    font-size: 18px;
+  }
+
+  .suggestion h3 {
+    font-size: 15px;
+  }
 }

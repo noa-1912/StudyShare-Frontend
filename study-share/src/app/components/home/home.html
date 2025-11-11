@@ -1,0 +1,27 @@
+<div class="home-container">
+  <header class="header">
+    <h1>ברוכה הבאה ל-StudyShare 🎓</h1>
+    <p *ngIf="user">שלום {{ user?.name }}!</p>
+    <p *ngIf="!user">התחברי כדי לגשת לפתרונות שלך</p>
+  </header>
+
+  <section class="features">
+    <div class="feature">
+      <h2>📚 מאגר פתרונות</h2>
+      <p>גשו לפתרונות שהעליתן או הוסיפו פתרונות חדשים לספרים שלכן.</p>
+      <button routerLink="/solutions-list">למאגר הפתרונות</button>
+    </div>
+
+    <div class="feature">
+      <h2>💬 בקשות ותגובות</h2>
+      <p>בקשו פתרונות חדשים, הגיבו ושתפו עם חברות לכיתה!</p>
+      <button routerLink="/suggestion-list">לרשימת הבקשות</button>
+    </div>
+
+    <div class="feature">
+      <h2>➕ הוספת פתרון</h2>
+      <p>שתפו פתרונות משלכן כדי לעזור לאחרות.</p>
+      <button routerLink="/add-suggestion">הוסיפי פתרון</button>
+    </div>
+  </section>
+</div>

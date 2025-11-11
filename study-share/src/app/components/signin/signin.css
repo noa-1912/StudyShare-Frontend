@@ -1,0 +1,81 @@
+.signin-container {
+  direction: rtl;
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 40px 35px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Heebo', sans-serif;
+}
+
+.signin-container h2 {
+  color: #1e3a8a; /* אותו צבע כמו הכותרת הראשית */
+  font-size: 26px;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+label {
+  display: block;
+  color: #1e3a8a;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #c7d2fe; /* כחול בהיר מאוד */
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #f8fafc;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+input:focus {
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+  outline: none;
+}
+
+button {
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+  .signin-container {
+    margin: 40px 20px;
+    padding: 30px 25px;
+  }
+
+  .signin-container h2 {
+    font-size: 22px;
+  }
+}

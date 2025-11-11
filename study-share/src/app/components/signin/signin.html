@@ -1,0 +1,22 @@
+
+<div class="signin-container">
+<h2>התחברות</h2>
+   <!-- //לחיצה על הכפתור ONLOGIN קורא לפונקציה NGSUBMIY -->
+  <form #signinForm="ngForm" (ngSubmit)="onSignin(signinForm)"> <!--יוצר טופס אימות עם ngForm -->
+    <div class="form-group"><!--זה הטופס של ההתחברות ותפקידו לאמת את המשתמש-->
+      <label for="username">מייל:</label><!--תווית למשתמש-->
+      <!--הכנסת שם משתמש-->
+      <!--מחבר את הערכים שהמשתמש מקליד-->
+      <input id="email" name="email" [(ngModel)]="email" required>
+    </div>
+    <!--מונע מהכפתור לעבוד אם הטופס לא תקין-->
+    <div class="form-group">
+        <!--זה הטופס של הסיסמה ותפקידו לאמת את המשתמש-->
+      <label for="password">סיסמה:</label>
+        <!--תווית לסיסמה-->
+      <input id="password" name="password" type="password" [(ngModel)]="password" required>
+    </div>
+    <!--מונע מהכפתור לעבוד אם הטופס לא תקין-->
+    <button type="submit" [disabled]="!signinForm.valid">התחבר</button>
+  </form>
+</div>

@@ -11,15 +11,23 @@ export class UsersModel {
     email!: string
     password!: string
     date?: Date
-   solutions: SolutionsModel[] = [];
-  suggestions: SuggestionModel[] = [];
-  comments: CommentsModel[] = [];
+    solutions: SolutionsModel[] = [];
+    suggestions: SuggestionModel[] = [];
+    comments: CommentsModel[] = [];
 
-    public constructor(name: string, email: string, password: string, date?: Date) {
+     imagePath?: string;      // שם קובץ (אם יש)
+    image?: string;          // בייס64 (לצפייה)
+
+
+
+
+    public constructor(name: string, email: string, password: string, date?: Date, imagePath?: string, image?: string) {
         this.name = name
         this.email = email
         this.password = password
         this.date = date
+        this.imagePath=imagePath
+        this.image=image
     }
     public constructorEmpty() { }
 
