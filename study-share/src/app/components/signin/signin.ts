@@ -37,8 +37,12 @@ export class SigninComponent {//מה יופיע בדף ההתחברות
       this.usersService.signin(this.email, this.password).subscribe({
         next: (username: string) => {
           console.log('התחברת בהצלחה כ:', username);
-            alert('התחברות הצליחה!');
+          alert('התחברות הצליחה!');
+          // ✅ שמירת המשתמש בלוקאל סטורג'
+          localStorage.setItem('user', JSON.stringify(username));
           // כאן את יכולה לשמור את שם המשתמש או לעבור לדף אחר
+             this.usersService.setLoggedIn(true); // ✅ עדכון מצב התחברות חי
+
           this.router.navigate(['/home']);
         },
         error: (err) => {
