@@ -34,23 +34,48 @@ export class SigninComponent {//מה יופיע בדף ההתחברות
       //     }
       //   });
       // }
-      this.usersService.signin(this.email, this.password).subscribe({
-        next: (username: string) => {
-          console.log('התחברת בהצלחה כ:', username);
-          alert('התחברות הצליחה!');
-          // ✅ שמירת המשתמש בלוקאל סטורג'
-          localStorage.setItem('user', JSON.stringify(username));
-          // כאן את יכולה לשמור את שם המשתמש או לעבור לדף אחר
-             this.usersService.setLoggedIn(true); // ✅ עדכון מצב התחברות חי
+//       this.usersService.signin(this.email, this.password).subscribe({
+//         next: (username: UsersModel)) => {
+//           console.log('התחברת בהצלחה כ:', UsersModel.name);
+//           alert('התחברות הצליחה!');
+//           // ✅ שמירת המשתמש בלוקאל סטורג'
+// localStorage.setItem('user', JSON.stringify(UsersModel));
+//           // localStorage.setItem('user', JSON.stringify(UsersModel));
 
-          this.router.navigate(['/home']);
-        },
-        error: (err) => {
-          console.error('שגיאה בהתחברות:', err);
-          alert('התחברות נכשלה');
-        }
-      });
+//           // כאן את יכולה לשמור את שם המשתמש או לעבור לדף אחר
+//              this.usersService.setLoggedIn(true); // ✅ עדכון מצב התחברות חי
 
+//           this.router.navigate(['/home']);
+//         },
+//         error: (err) => {
+//           console.error('שגיאה בהתחברות:', err);
+//           alert('התחברות נכשלה');
+//         }
+//       });
+
+//     }
+//   }
+// }
+this.usersService.signin(this.email, this.password).subscribe({
+  next: (user: UsersModel) => {
+    console.log('התחברת בהצלחה כ:', user);
+    alert('התחברות הצליחה!');
+    
+    // ✅ שמירת המשתמש האמיתי בלוקאל סטורג'
+    localStorage.setItem('user', JSON.stringify(user));
+
+
+    // ✅ עדכון מצב התחברות
+    this.usersService.setLoggedIn(true);
+
+    // ✅ ניתוב לדף הבית
+    this.router.navigate(['/home']);
+  },
+  error: (err) => {
+    console.error('שגיאה בהתחברות:', err);
+    alert('התחברות נכשלה');
+  }
+});
     }
   }
 }

@@ -11,7 +11,8 @@ export class SuggestionModel {
     content!: string
     uploadDate!: Date
     imagePath?: string;      // שם קובץ (אם יש)
-    user!: any;              // או UsersModel אם יצרת
+    user!: any;  
+    userDTO?: UsersModel;            // או UsersModel אם יצרת
     book?: any;              // אם כרגע לא בשימוש אפשר להשאיר אופציונלי
     image?: string;          // בייס64 (לצפייה)
 

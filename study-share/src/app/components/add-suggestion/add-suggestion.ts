@@ -52,6 +52,25 @@ export class AddSuggestion {
   }
 
   addSuggestion() {
+const userStr = localStorage.getItem('user');
+if (!userStr) {
+  alert('❌ לא נמצא משתמש מחובר — תבדקי שהתחברת!');
+  return;
+}
+let user = JSON.parse(userStr);
+if (typeof user === 'string') {
+  user = JSON.parse(user);
+}
+console.log('✅ fixed user:', user);
+console.log('user.id:', user.id);
+
+  console.log('📦 user from localStorage:', user);
+
+  if (!user.id) {
+    alert('❌ לא נמצא משתמש מחובר — תבדקי שהתחברת!');
+    return;
+  }
+this.newSuggestion.user = { id: user.id };
     // this.onAddTask.emit(this.newTask);
     this._suggestionService.add(this.newSuggestion, this.selectedFile).subscribe({
       next: (res) => {

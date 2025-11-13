@@ -24,14 +24,26 @@ public suggestionArr: SuggestionModel[]=[];
 //   },
 //   error: (err) => console.error('Error loading suggestion:', err)
 // });
-  ngOnInit(): void {
-    this._suggestionService.getAll().subscribe({
-     next: (res) => (this.suggestionArr = res || []),
-      error: (err) => 
-        console.error('Error loading suggestion:', err)
+  // ngOnInit(): void {
+  //   this._suggestionService.getAll().subscribe({
+  //    next: (res) => (this.suggestionArr = res || []),
+  //     error: (err) => 
+  //       console.error('Error loading suggestion:', err)
       
-    })
-  } 
+  //   })
+  // } 
+  ngOnInit(): void {
+  this._suggestionService.getAll().subscribe({
+    next: (res) => {
+      this.suggestionArr = (res || []).map(s => ({
+        ...s,
+        user: s.userDTO  // מוסיפים שדה user שיקל על התבנית
+      }));
+    },
+    error: (err) => console.error('Error loading suggestion:', err)
+  });
+}
+
    addSuggestion1(): void {
     this.router.navigate(['/add-suggestion']); 
     // 👆 מעביר אותך לעמוד הוספת הצעה חדשה

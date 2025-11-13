@@ -38,8 +38,7 @@ export class SuggestionService {
     );
 
     return this._httpClient.post<SuggestionModel>(
-      `http://localhost:8080/api/suggesion/uploadSuggestion`,
-      formData
+    'http://localhost:8080/api/suggesion/uploadSuggestion', formData
     );
   }
 

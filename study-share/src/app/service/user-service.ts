@@ -30,8 +30,8 @@ export class UsersService {
 
   // }
   //התחברות
-  signin(email: string, password: string): Observable<string> {
-    return this.http.post<string>(
+  signin(email: string, password: string): Observable<UsersModel> {
+    return this.http.post<UsersModel>(
       'http://localhost:8080/api/user/signin',
       { email, password },
       {
