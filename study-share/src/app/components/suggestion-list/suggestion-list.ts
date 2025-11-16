@@ -62,4 +62,13 @@ onImageError(event: any) {
   event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
 }
 
+showDetailes(s: SuggestionModel) {
+  if (!s || !s.id) {
+    console.error("Cannot navigate – missing id:", s);
+    return;
+  }
+  this.router.navigate(['/suggestion-details', s.id]);
+}
+
+
 }

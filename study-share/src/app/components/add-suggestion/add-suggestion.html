@@ -1,5 +1,13 @@
 
 <form #AddForm="ngForm">
+
+  <label for="book">ספר:</label>
+  <select [(ngModel)]="newSuggestion.book" name="book">
+  <option *ngFor="let b of booksList" [value]="b.id">
+    {{ b.bookName }}
+  </option>
+</select>
+
   <label for="page">עמוד:</label>
   <input type="number" id="page" [(ngModel)]="newSuggestion.page" name="page" required />
 

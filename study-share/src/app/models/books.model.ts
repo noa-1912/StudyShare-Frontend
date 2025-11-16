@@ -18,8 +18,7 @@ export class BooksModel {
         this.description = description
         this.subject = subject
     }
-    public constructorEmpty() { }
-
+   
 
 
   

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UsersModel } from '../../models/users.model';
 import { BooksModel } from '../../models/books.model';
+import { BooksService } from '../../service/book-service';
 
 @Component({
   selector: 'app-add-suggestion',
@@ -14,8 +15,10 @@ import { BooksModel } from '../../models/books.model';
   templateUrl: './add-suggestion.html',
   styleUrl: './add-suggestion.css',
 })
+
 export class AddSuggestion {
   public selectedFile?: File;
+  public booksList: BooksModel[] = [];
   public newSuggestion: SuggestionModel = {
 
     page: 0,
@@ -28,15 +31,19 @@ export class AddSuggestion {
     user: undefined,//לבדוק
     book: undefined//לבדוק
 
+
+
   };
 
 
 
 
 
-  constructor(private router: Router, private _suggestionService: SuggestionService) { }
+  constructor(private router: Router, private _suggestionService: SuggestionService, private _booksService: BooksService) { }
   previewUrl: string | ArrayBuffer | null = null;
-
+ngOnInit() {
+ this.booksList = this._booksService.getAllBooks();
+}
   onImageSelected(ev: any) {
     const file = ev.target.files?.[0];
     if (file) {

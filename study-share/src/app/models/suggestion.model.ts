@@ -4,12 +4,12 @@ import { UsersModel } from "./users.model"
 export class SuggestionModel {
 
     id?: number
-    page!: number
-    exercise!: number
+    page?: number
+    exercise?: number
     section?: number
     subSection?: number
-    content!: string
-    uploadDate!: Date
+    content?: string
+    uploadDate?: Date
     imagePath?: string;      // שם קובץ (אם יש)
     user!: any;  
     userDTO?: UsersModel;            // או UsersModel אם יצרת

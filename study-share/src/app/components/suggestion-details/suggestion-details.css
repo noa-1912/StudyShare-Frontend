@@ -1,0 +1,146 @@
+.details-container {
+  max-width: 700px;
+  margin: 40px auto;
+  direction: rtl;
+  text-align: right;
+  font-family: "Assistant", sans-serif;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
+  font-weight: 800;
+  color: #4052f1;
+}
+
+.content-block {
+  font-size: 19px;
+  line-height: 1.9;
+  color: #222;
+  background: linear-gradient(180deg, #f7f9ff 0%, #ffffff 100%);
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.13);
+}
+
+.label {
+  font-weight: 700;
+  color: #3a4bbd;
+}
+
+.long-text {
+  margin-top: 10px;
+  white-space: pre-line;
+}
+
+.image-wrapper {
+  margin-top: 18px;
+}
+
+.preview-image {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.back-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  background: linear-gradient(90deg, #536dfe, #738bff);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 700;
+}
+
+.back-btn:hover {
+  background: linear-gradient(90deg, #3b50e0, #6478ff);
+  transform: translateY(-2px);
+}
+
+/* אנימציה */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.details-container {
+  max-width: 700px;
+  margin: 40px auto;
+  direction: rtl;
+  text-align: right;
+  font-family: "Assistant", sans-serif;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
+  font-weight: 800;
+  color: #4052f1;
+}
+
+.content-block {
+  font-size: 19px;
+  line-height: 1.9;
+  color: #222;
+  background: linear-gradient(180deg, #f7f9ff 0%, #ffffff 100%);
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.13);
+}
+
+.label {
+  font-weight: 700;
+  color: #3a4bbd;
+}
+
+.long-text {
+  margin-top: 10px;
+  white-space: pre-line;
+}
+
+.image-wrapper {
+  margin-top: 18px;
+}
+
+.preview-image {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.back-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  background: linear-gradient(90deg, #536dfe, #738bff);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 700;
+}
+
+.back-btn:hover {
+  background: linear-gradient(90deg, #3b50e0, #6478ff);
+  transform: translateY(-2px);
+}
+
+/* אנימציה */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
