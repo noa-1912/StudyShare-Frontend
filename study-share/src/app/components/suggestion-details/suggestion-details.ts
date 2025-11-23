@@ -38,8 +38,9 @@ export class SuggestionDetails {
       })
     })
   }
+
   onImageError(event: any) {
-  event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
-}
+    event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
+  }
 
 }

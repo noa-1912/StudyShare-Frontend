@@ -1,8 +1,5 @@
+<form #SearchForm="ngForm">
 
-
-<form #AddForm="ngForm">
-
-  <!-- בחירת מקצוע -->
   <label>מקצוע:</label>
   <select [(ngModel)]="selectedSubject" (change)="onSubjectChange()" name="subject" required>
     <option value="">בחר מקצוע</option>
@@ -10,23 +7,26 @@
     <option value="english">📗 אנגלית</option>
   </select>
 
-  <!-- בחירת שכבה -->
   <label>שכבה:</label>
-  <select [(ngModel)]="selectedGrade" (change)="onGradeChange()" name="grade" required [disabled]="!selectedSubject">
+  <select [(ngModel)]="selectedGrade"
+          (change)="onGradeChange()"
+          name="grade"
+          required
+          [disabled]="!selectedSubject">
     <option value="">בחר שכבה</option>
     <option *ngFor="let g of grades" [value]="g">{{ g }}</option>
   </select>
 
-  <!-- בחירת ספר -->
-<label>ספר:</label>
-<select [(ngModel)]="solution.book" name="book" required [disabled]="booksFiltered.length === 0">
-  <option value="">בחר ספר</option>
-  <option *ngFor="let b of booksFiltered" [ngValue]="b">
-    {{ b.bookName }}
-  </option>
-</select>
-
-
+  <label>ספר:</label>
+  <select [(ngModel)]="solution.book"
+          name="book"
+          required
+          [disabled]="booksFiltered.length === 0">
+    <option value="">בחר ספר</option>
+    <option *ngFor="let b of booksFiltered" [ngValue]="b">
+      {{ b.bookName }}
+    </option>
+  </select>
 
   <label for="page">עמוד:</label>
   <input type="number" id="page" [(ngModel)]="solution.page" name="page" required />
@@ -35,19 +35,33 @@
   <input type="number" id="exercise" [(ngModel)]="solution.exercise" name="exercise" required />
 
   <label for="section">סעיף:</label>
-  <input type="number" id="section" [(ngModel)]="solution.section" name="section" required />
+  <input type="number" id="section" [(ngModel)]="solution.section" name="section" />
 
-  <label for="subSection">תת-סעיף:</label>
-  <input type="number" id="subSection" [(ngModel)]="solution.subSection" name="subSection" required />
+  <label for="subSection">תת־סעיף:</label>
+  <input type="number" id="subSection" [(ngModel)]="solution.subSection" name="subSection" />
 
-  <label for="content">תוכן בקשה:</label>
-  <textarea id="content" [(ngModel)]="solution.content" name="content" required></textarea>
-
-  <!-- <label for="image">תמונה (אופציונלי):</label>
-  <input type="file" id="image" (change)="onImageSelected($event)" />
-<div *ngIf ="previewUrl" class="preview-container">
-    <h4>תצוגה מקדימה:</h4>
-    <img [src]="previewUrl" alt="תצוגת תמונה" class="preview-img" />
-  </div> -->
- <button (click)="searchSolution()" >חיפוש פתרון:</button>
+  <button type="button" (click)="searchSolution()">חיפוש פתרון</button>
 </form>
+
+<hr>
+
+<p *ngIf="isSearching">⏳ מחפש פתרון...</p>
+<p *ngIf="!isSearching && notFound">❌ לא נמצא פתרון מתאים.</p>
+
+<div *ngIf="results.length > 0">
+  <h3>תוצאות:</h3>
+
+  <div *ngFor="let s of results" class="solution-card">
+    <p><b>ספר:</b> {{ s.book?.bookName }}</p>
+    <p><b>עמוד:</b> {{ s.page }} | <b>תרגיל:</b> {{ s.exercise }}</p>
+
+    <p *ngIf="s.section"><b>סעיף:</b> {{ s.section }}</p>
+    <p *ngIf="s.subSection"><b>תת־סעיף:</b> {{ s.subSection }}</p>
+
+    <p><b>פתרון:</b> {{ s.content }}</p>
+
+    <div *ngIf="s.image">
+      <img [src]="'data:image/jpeg;base64,' + s.image" alt="פתרון מצולם" />
+    </div>
+  </div>
+</div>

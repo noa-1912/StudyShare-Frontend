@@ -16,6 +16,7 @@ export class SuggestionService {
   getById(id: number): Observable<SuggestionModel> {
     return this._httpClient.get<SuggestionModel>(`http://localhost:8080/api/suggesion/getSuggestion/${id}`);
   }
+  
   getAll(): Observable<SuggestionModel[]> {
     return this._httpClient.get<SuggestionModel[]>(`http://localhost:8080/api/suggesion/getSuggestion`);
   }
