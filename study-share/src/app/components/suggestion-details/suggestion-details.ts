@@ -27,10 +27,12 @@ export class SuggestionDetails {
     this.route.params.subscribe((params) => {
       id = params['id']
       this.suggestionService.getById(id).subscribe({
-        next: (res) => {
+       next: (res) => {
           this.suggestionToShow = res;
-        },
+}
+,
         error: (err) => {
+          
           console.log(err);
         }
       })
