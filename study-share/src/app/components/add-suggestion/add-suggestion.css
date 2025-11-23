@@ -9,12 +9,14 @@ form {
   font-family: 'Heebo', sans-serif;
 }
 
+/* כותרות קטנות */
 h4 {
   color: #1e3a8a;
   font-size: 20px;
   margin-bottom: 15px;
 }
 
+/* תוויות */
 label {
   display: block;
   font-weight: 600;
@@ -24,9 +26,11 @@ label {
   font-size: 16px;
 }
 
+/* שדות מספר, קובץ, טקסט */
 input[type="number"],
 input[type="file"],
-textarea {
+textarea,
+select {
   width: 100%;
   padding: 10px 12px;
   border: 2px solid #c7d2fe;
@@ -34,10 +38,13 @@ textarea {
   background-color: #f8fafc;
   font-size: 15px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 }
 
+/* כששדה בפוקוס */
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border-color: #1e3a8a;
   box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
   outline: none;
@@ -48,6 +55,7 @@ textarea {
   min-height: 100px;
 }
 
+/* כפתור שליחה */
 button {
   margin-top: 25px;
   width: 100%;
@@ -67,6 +75,7 @@ button:hover {
   transform: translateY(-2px);
 }
 
+/* תצוגה מקדימה */
 .preview-container {
   margin-top: 20px;
   text-align: center;
@@ -87,6 +96,7 @@ button:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* מובייל */
 @media (max-width: 500px) {
   form {
     margin: 30px 15px;

@@ -1,4 +1,5 @@
 
+
 <form #AddForm="ngForm">
 
   <!-- בחירת מקצוע -->
@@ -17,19 +18,8 @@
   </select>
 
   <!-- בחירת ספר -->
-<!-- <label>ספר:</label>
-<select [(ngModel)]="newSuggestion.book" name="book" required [disabled]="booksFiltered.length === 0">
-  <option value="">בחר ספר</option>
-  <option *ngFor="let b of booksFiltered" [ngValue]="b">
-    {{ b.bookName }}
-  </option>
-</select> -->
-<!-- בחירת ספר -->
 <label>ספר:</label>
-<select [(ngModel)]="newSuggestion.book"
-        name="book"
-        required
-        [disabled]="booksFiltered.length === 0">
+<select [(ngModel)]="solution.book" name="book" required [disabled]="booksFiltered.length === 0">
   <option value="">בחר ספר</option>
   <option *ngFor="let b of booksFiltered" [ngValue]="b">
     {{ b.bookName }}
@@ -38,27 +28,26 @@
 
 
 
-
   <label for="page">עמוד:</label>
-  <input type="number" id="page" [(ngModel)]="newSuggestion.page" name="page" required />
+  <input type="number" id="page" [(ngModel)]="solution.page" name="page" required />
 
   <label for="exercise">תרגיל:</label>
-  <input type="number" id="exercise" [(ngModel)]="newSuggestion.exercise" name="exercise" required />
+  <input type="number" id="exercise" [(ngModel)]="solution.exercise" name="exercise" required />
 
   <label for="section">סעיף:</label>
-  <input type="number" id="section" [(ngModel)]="newSuggestion.section" name="section" required />
+  <input type="number" id="section" [(ngModel)]="solution.section" name="section" required />
 
   <label for="subSection">תת-סעיף:</label>
-  <input type="number" id="subSection" [(ngModel)]="newSuggestion.subSection" name="subSection" required />
+  <input type="number" id="subSection" [(ngModel)]="solution.subSection" name="subSection" required />
 
   <label for="content">תוכן בקשה:</label>
-  <textarea id="content" [(ngModel)]="newSuggestion.content" name="content" required></textarea>
+  <textarea id="content" [(ngModel)]="solution.content" name="content" required></textarea>
 
-  <label for="image">תמונה (אופציונלי):</label>
+  <!-- <label for="image">תמונה (אופציונלי):</label>
   <input type="file" id="image" (change)="onImageSelected($event)" />
 <div *ngIf ="previewUrl" class="preview-container">
     <h4>תצוגה מקדימה:</h4>
     <img [src]="previewUrl" alt="תצוגת תמונה" class="preview-img" />
-  </div>
- <button (click)="addSuggestion()" >הוספת בקשה:</button>
+  </div> -->
+ <button (click)="searchSolution()" >חיפוש פתרון:</button>
 </form>

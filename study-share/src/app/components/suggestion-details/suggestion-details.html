@@ -1,32 +1,28 @@
 <div class="details-container">
 
-  <h1 class="title">פרטי בקשה</h1>
+    <h1 class="title">פרטי בקשה</h1>
 
-  <div class="content-block">
+    <div class="content-block">
 
-    <p><span class="label">שם ספר:</span> {{ suggestionToShow?.book }}</p>
+        <p><span class="label">שם ספר:</span> {{ suggestionToShow?.book?.bookName }}</p>
 
-    <p><span class="label">מספר תרגיל:</span> {{ suggestionToShow?.exercise }}</p>
+        <p><span class="label">מספר תרגיל:</span> {{ suggestionToShow?.exercise }}</p>
 
-    <p><span class="label">מספר סעיף:</span> {{ suggestionToShow?.section }}</p>
+        <p><span class="label">מספר סעיף:</span> {{ suggestionToShow?.section }}</p>
 
-    <p><span class="label">מספר תת סעיף:</span> {{ suggestionToShow?.subSection }}</p>
+        <p><span class="label">מספר תת סעיף:</span> {{ suggestionToShow?.subSection }}</p>
 
-    <p class="long-text">
-      <span class="label">תוכן:</span><br>
-      {{ suggestionToShow?.content }}
-    </p>
+        <p class="long-text">
+            <span class="label">תוכן:</span><br>
+            {{ suggestionToShow?.content }}
+        </p>
 
-    <div *ngIf="suggestionToShow?.image" class="image-wrapper">
-      <span class="label"></span>
-      <img
-        [src]="'data:image/jpeg;base64,' + suggestionToShow?.image"
-        class="preview-image"
-        (error)="onImageError($event)"
-      />
+        <div *ngIf="suggestionToShow?.image" class="image-wrapper">
+            <span class="label"></span>
+            <img [src]="'data:image/jpeg;base64,' + suggestionToShow?.image" class="preview-image"
+                (error)="onImageError($event)" />
+        </div>
+
     </div>
 
-  </div>
-
-  <button class="back-btn" (click)="goBack()">חזרה לרשימת הבקשות</button>
-
+    <button class="back-btn" (click)="goBack()">חזרה לרשימת הבקשות</button>
