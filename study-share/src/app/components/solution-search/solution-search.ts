@@ -50,7 +50,7 @@ export class SolutionSearchComponent {
     private _booksService: BooksService,
     private _solutionService: SolutionService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this._booksService.getAll().subscribe({
@@ -109,17 +109,37 @@ export class SolutionSearchComponent {
     this.notFound = false;
     this.results = [];
 
-    this._solutionService.searchSolution(criteria.bookId,criteria.page,criteria.exercise).subscribe({
+    this._solutionService.searchSolution(criteria.bookId, criteria.page, criteria.exercise).subscribe({
+      // next: (solutions) => {
+      //   this.isSearching = false;
+      //   this.results = solutions;
+      //   this.notFound = solutions.length === 0;
+      //   console.log('✅ solutions found:', solutions);
+      // }
       next: (solutions) => {
         this.isSearching = false;
-        this.results = solutions;
-        this.notFound = solutions.length === 0;
-        console.log('✅ solutions found:', solutions);
+
+        // ⭐ תיקון חובה — אם null → נהפוך לרשימה ריקה
+        this.results = solutions ?? [];
+
+        this.notFound = this.results.length === 0;
+     this._solutionService.lastSearchResults = this.results;
+this.router.navigate(['/solution-results']);
+
       },
+      // error: (err) => {
+      //   this.isSearching = false;
+      //   console.log('❌ שגיאה בחיפוש פתרונות:', err);
+      //   alert('ארעה שגיאה בחיפוש הפתרון – בדקי קונסול');
+      // }
       error: (err) => {
         this.isSearching = false;
-        console.log('❌ שגיאה בחיפוש פתרונות:', err);
-        alert('ארעה שגיאה בחיפוש הפתרון – בדקי קונסול');
+
+        // במקרה של 204 או שגיאה → ריק
+        this.results = [];
+        this.notFound = true;
+
+        console.log("❌ שגיאה בחיפוש פתרונות:", err);
       },
     });
   }

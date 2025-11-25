@@ -48,7 +48,9 @@
 <p *ngIf="isSearching">⏳ מחפש פתרון...</p>
 <p *ngIf="!isSearching && notFound">❌ לא נמצא פתרון מתאים.</p>
 
-<div *ngIf="results.length > 0">
+<!-- <div *ngIf="results.length > 0"> -->
+  <div *ngIf="results && results.length > 0">
+
   <h3>תוצאות:</h3>
 
   <div *ngFor="let s of results" class="solution-card">

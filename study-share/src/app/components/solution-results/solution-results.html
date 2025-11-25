@@ -1,0 +1,17 @@
+<h1>כל הפתרונות</h1>
+
+<div *ngFor="let s of solutions; index as i">
+    <div class="solution">
+        <div class="user-info">
+
+            <img *ngIf="s.userDTO?.imagePath" [src]="'http://localhost:8080/api/user/image/' + s.userDTO?.imagePath"
+                alt="תמונת משתמש" class="profile-image" />
+
+
+            <h2>{{ s.userDTO?.name }}</h2>
+        </div>
+
+        <h3>תוכן: {{ s.content }}</h3>
+    </div>
+    <button (click)="showDetailes(s)">צפה בפרטים</button>
+</div>

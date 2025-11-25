@@ -1,0 +1,109 @@
+form {
+  direction: rtl;
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 40px 35px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Heebo', sans-serif;
+}
+
+/* כותרות קטנות */
+h4 {
+  color: #1e3a8a;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* תוויות */
+label {
+  display: block;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+/* שדות מספר, קובץ, טקסט */
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #c7d2fe;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  font-size: 15px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+/* כששדה בפוקוס */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* כפתור שליחה */
+button {
+  margin-top: 25px;
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transform: translateY(-2px);
+}
+
+/* תצוגה מקדימה */
+.preview-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview-container h4 {
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.preview-img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid #c7d2fe;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* מובייל */
+@media (max-width: 500px) {
+  form {
+    margin: 30px 15px;
+    padding: 25px 20px;
+  }
+
+  button {
+    font-size: 16px;
+  }
+}

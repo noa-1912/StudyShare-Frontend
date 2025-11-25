@@ -21,7 +21,11 @@ export class SuggestionDetails {
   goBack() {
     this.router.navigate(['/suggestion-list']);
   }
-
+ addSolution() {
+this.router.navigate(['/add-solution'], {
+  state: { suggestion: this.suggestionToShow }
+});
+  }
   ngOnInit(): void {
     var id: number;
     this.route.params.subscribe((params) => {
@@ -44,5 +48,8 @@ export class SuggestionDetails {
   onImageError(event: any) {
   event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
 }
+
+
+
 
 }

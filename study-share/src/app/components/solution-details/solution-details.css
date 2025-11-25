@@ -120,7 +120,7 @@
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-.btn {
+.back-btn {
   width: 100%;
   padding: 15px;
   margin-top: 30px;
@@ -134,7 +134,7 @@
   font-weight: 700;
 }
 
-.btn:hover {
+.back-btn:hover {
   background: linear-gradient(90deg, #3b50e0, #6478ff);
   transform: translateY(-2px);
 }

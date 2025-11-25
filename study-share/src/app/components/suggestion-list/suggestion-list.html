@@ -29,7 +29,7 @@
 @for (suggestion of suggestionArr; track $index) {
 <div class="suggestion">
   <div class="user-info">
-    <img *ngIf="suggestion.userDTO?.imagePath"
+    <img *ngIf ="suggestion.userDTO?.imagePath"
       [src]="'http://localhost:8080/api/user/image/' + suggestion.userDTO?.imagePath" alt="תמונת משתמש" />
     <h2>{{ suggestion.userDTO?.name }}</h2>
   </div>

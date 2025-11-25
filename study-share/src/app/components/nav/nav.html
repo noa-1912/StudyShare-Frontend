@@ -1,6 +1,8 @@
 <nav>
   <ul>
     <li><a routerLink="/add-suggestion" routerLinkActive="active">הוספת בקשה</a>|</li>
+        <li><a routerLink="/add-solution" routerLinkActive="active">הוספת פתרון</a>|</li>
+
 
     <li><a routerLink="/search-solution" routerLinkActive="active">חיפוש פתרון</a>|</li>
 
@@ -18,7 +20,7 @@
     <li><a routerLink="/signup" routerLinkActive="active">הרשמה</a></li> -->
   </ul>
 
-  <li *ngIf ="isLoggedIn">
+  <li *ngIf  ="isLoggedIn">
     <button (click)="onSignOut()" class="logout-btn">התנתקות</button>
   </li>
 </nav>
