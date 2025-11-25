@@ -50,20 +50,20 @@ export class AddSuggestion {
   // }
 
   ngOnInit(): void {
-  this._booksService.getAll().subscribe({
-    next: (books) => {
-      this.allBooks = books;
+    this._booksService.getAll().subscribe({
+      next: (books) => {
+        this.allBooks = books;
 
-   this.booksListMath = books.filter(b => b.subject?.id === 1);
-this.booksListEnglish = books.filter(b => b.subject?.id === 2);
-      console.log("📚 Books from server:", books);
+        this.booksListMath = books.filter(b => b.subject?.id === 1);
+        this.booksListEnglish = books.filter(b => b.subject?.id === 2);
+        console.log("📚 Books from server:", books);
 
-    },
-    error: (err) => {
-      console.log("❌ שגיאה בקבלת ספרים:", err);
-    }
-  });
-}
+      },
+      error: (err) => {
+        console.log("❌ שגיאה בקבלת ספרים:", err);
+      }
+    });
+  }
 
 
 
@@ -74,23 +74,23 @@ this.booksListEnglish = books.filter(b => b.subject?.id === 2);
   }
 
   //בחירת כיתה לאחר בחירת מקצוע
-onGradeChange() {
-  if (!this.selectedSubject || !this.selectedGrade) {
-    this.booksFiltered = [];
-    return;
+  onGradeChange() {
+    if (!this.selectedSubject || !this.selectedGrade) {
+      this.booksFiltered = [];
+      return;
+    }
+
+    // נזהה איזה SUBJECT_ID תואם
+    const targetSubjectId = this.selectedSubject === "math" ? 1 : 2;
+
+    this.booksFiltered = this.allBooks.filter(b =>
+      b.subject?.id === targetSubjectId &&
+      b.grade === this.selectedGrade
+    );
+
+    console.log("📘 booksFiltered:", this.booksFiltered);
+
   }
-
-  // נזהה איזה SUBJECT_ID תואם
-  const targetSubjectId = this.selectedSubject === "math" ? 1 : 2;
-
-  this.booksFiltered = this.allBooks.filter(b =>
-    b.subject?.id === targetSubjectId &&
-    b.grade === this.selectedGrade
-  );
-
-  console.log("📘 booksFiltered:", this.booksFiltered);
-
-}
 
 
 
@@ -147,49 +147,49 @@ onGradeChange() {
 
 
 
-addSuggestion() {
+  addSuggestion() {
 
-  // ---------------------
-  // 1) להביא את המשתמש
-  // ---------------------
-  const raw = localStorage.getItem("user");
-  if (!raw) {
-    alert("❌ לא נמצא משתמש מחובר");
-    return;
-  }
-
-  // user הוא אובייקט אמיתי עכשיו
-  const user = JSON.parse(JSON.parse(raw));
-
-  // ---------------------
-  // 2) לשלוח רק ID של user
-  // ---------------------
-  this.newSuggestion.user = { id: user.id };
-
-  // ---------------------
-  // 3) לשלוח רק ID של book
-  // ---------------------
-  if (this.newSuggestion.book) {
-    this.newSuggestion.book = { id: this.newSuggestion.book.id } as any;
-  }
-
-  console.log("📤 suggestion we send:", this.newSuggestion);
-
-  // ---------------------
-  // 4) שליחה לשרת
-  // ---------------------
-  this._suggestionService.add(this.newSuggestion, this.selectedFile).subscribe({
-    next: (res) => {
-      console.log("Suggestion added:", res);
-      this.router.navigate(['/suggestion-list']);
-    },
-    error: (err) => {
-      console.log(err);
-      alert("❌ בקשה נכשלה — בדקי קונסול");
+    // ---------------------
+    // 1) להביא את המשתמש
+    // ---------------------
+    const raw = localStorage.getItem("user");
+    if (!raw) {
+      alert("❌ לא נמצא משתמש מחובר");
+      return;
     }
-  });
 
-}
+    // // user הוא אובייקט אמיתי עכשיו
+    const user = JSON.parse(JSON.parse(raw));
+
+    // // ---------------------
+    // // 2) לשלוח רק ID של user
+    // // ---------------------
+    this.newSuggestion.user = { id: user.id };
+
+    // ---------------------
+    // 3) לשלוח רק ID של book
+    // ---------------------
+    if (this.newSuggestion.book) {
+      this.newSuggestion.book = { id: this.newSuggestion.book.id } as any;
+    }
+
+    console.log("📤 suggestion we send:", this.newSuggestion);
+
+    // ---------------------
+    // 4) שליחה לשרת
+    // ---------------------
+    this._suggestionService.add(this.newSuggestion, this.selectedFile).subscribe({
+      next: (res) => {
+        console.log("Suggestion added:", res);
+        this.router.navigate(['/suggestion-list']);
+      },
+      error: (err) => {
+        console.log(err);
+        alert("❌ בקשה נכשלה — בדקי קונסול");
+      }
+    });
+
+  }
 
 
 

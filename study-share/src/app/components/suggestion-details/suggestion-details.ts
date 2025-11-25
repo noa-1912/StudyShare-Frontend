@@ -29,6 +29,11 @@ export class SuggestionDetails {
       this.suggestionService.getById(id).subscribe({
         next: (res) => {
           this.suggestionToShow = res;
+
+            // ⭐⭐ כאן נוסיף הדפסות בדיקה ⭐⭐
+      console.log("📌 suggestionToShow =", this.suggestionToShow);
+      console.log("📚 suggestionToShow.book =", this.suggestionToShow.book);
+      console.log("📚 suggestionToShow.books =", this.suggestionToShow.book);
         },
         error: (err) => {
           console.log(err);

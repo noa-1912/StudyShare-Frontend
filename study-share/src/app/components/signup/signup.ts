@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FormsModule,CommonModule],//תפקידה לאפשר שימוש ב-ngModel בטופס
+  imports: [FormsModule, CommonModule],//תפקידה לאפשר שימוש ב-ngModel בטופס
   templateUrl: './signup.html',
   styleUrls: ['./signup.css']
 
@@ -18,7 +18,7 @@ export class SignupComponent {
   password: string = '';
   email: string = '';
   imagePath: string = '';
- public selectedFile?: File;
+  public selectedFile?: File;
   constructor(private userService: UsersService, private router: Router) {
 
   }
@@ -39,19 +39,19 @@ export class SignupComponent {
 
   //ניצור פונקציה שתופעל כאשר נשלחת בקשת ההרשמה
   onSignup(form: any): void {
-  
+
     if (form.valid) { //בדיקת טופס תקין אם שדות לא ריקים
       const { name, password, email } = form.value; //מקבל את הערכים מהטופס
-this.userService.signup(name, password, email, this.selectedFile).subscribe({
-  next: (user) => {
-    console.log('הרשמה הצליחה:', user);
-    this.router.navigate(['/signin']);
-  },
-  error: (error) => {
-    console.error('הרשמה נכשלה:', error);
-    alert('הרשמה נכשלה, נא לנסות שוב.');
-  }
-});
+      this.userService.signup(name, password, email, this.selectedFile).subscribe({
+        next: (user) => {
+          console.log('הרשמה הצליחה:', user);
+          this.router.navigate(['/signin']);
+        },
+        error: (error) => {
+          console.error('הרשמה נכשלה:', error);
+          alert('הרשמה נכשלה, נא לנסות שוב.');
+        }
+      });
 
     }
   }
