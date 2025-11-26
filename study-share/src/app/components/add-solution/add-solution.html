@@ -70,7 +70,7 @@
           (change)="onSubjectChange()"
           name="subject"
           required
-          [disabled]="isFromSuggestion">
+          [disabled]="isFromSolution">
     <option value="">בחר מקצוע</option>
     <option value="math">📘 מתמטיקה</option>
     <option value="english">📗 אנגלית</option>
@@ -82,7 +82,7 @@
           (change)="onGradeChange()"
           name="grade"
           required
-          [disabled]="isFromSuggestion || !selectedSubject">
+          [disabled]="isFromSolution || !selectedSubject">
     <option value="">בחר שכבה</option>
     <option *ngFor="let g of grades" [value]="g">{{ g }}</option>
   </select>
@@ -92,7 +92,7 @@
   <select [(ngModel)]="newSolution.book"
           name="book"
           required
-          [disabled]="isFromSuggestion || booksFiltered.length === 0">
+          [disabled]="isFromSolution || booksFiltered.length === 0">
     <option value="">בחר ספר</option>
     <option *ngFor="let b of booksFiltered" [ngValue]="b">
       {{ b.bookName }}
@@ -105,7 +105,7 @@
          [(ngModel)]="newSolution.page"
          name="page"
          required
-         [readonly]="isFromSuggestion" />
+         [readonly]="isFromSolution" />
 
   <label for="exercise">תרגיל:</label>
   <input type="number"
@@ -113,21 +113,21 @@
          [(ngModel)]="newSolution.exercise"
          name="exercise"
          required
-         [readonly]="isFromSuggestion" />
+         [readonly]="isFromSolution" />
 
   <label for="section">סעיף:</label>
   <input type="number"
          id="section"
          [(ngModel)]="newSolution.section"
          name="section"
-         [readonly]="isFromSuggestion" />
+         [readonly]="isFromSolution" />
 
   <label for="subSection">תת-סעיף:</label>
   <input type="number"
          id="subSection"
          [(ngModel)]="newSolution.subSection"
          name="subSection"
-         [readonly]="isFromSuggestion" />
+         [readonly]="isFromSolution" />
 
   <label for="content">תוכן פתרון:</label>
   <textarea id="content"

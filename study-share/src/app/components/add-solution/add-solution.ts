@@ -43,60 +43,80 @@ export class AddSolution {
 
   constructor(private router: Router, private _solutionsService: SolutionService, private _booksService: BooksService) { }
   previewUrl: string | ArrayBuffer | null = null;
-  public isFromSuggestion: boolean = false;
+  public isFromSolution: boolean = false;
 
-  ngOnInit(): void {
+ngOnInit(): void {
 
-    // this._booksService.getAll().subscribe({
-    //   next: (books) => {
-    //     this.allBooks = books;
+  const state = history.state as { solution?: any };
 
-    //     this.booksListMath = books.filter(b => b.subject?.id === 1);
-    //     this.booksListEnglish = books.filter(b => b.subject?.id === 2);
-    //     console.log("📚 Books from server:", books);
+  // ===========================
+  // 1) אם הגענו מדף בקשה
+  // ===========================
+  if (state?.solution) {
+    const s = state.solution;
+    this.isFromSolution = true;
 
-    //   },
-    //   error: (err) => {
-    //     console.log("❌ שגיאה בקבלת ספרים:", err);
-    //   }
-    // });
-    
-  // 1) לבדוק אם הגיענו מדף בקשה
-  const state = history.state as { suggestion?: any };
+    // ---- מילוי נתוני הבקשה ----
+    this.newSolution.page = s.page;
+    this.newSolution.exercise = s.exercise;
+    this.newSolution.section = s.section;
+    this.newSolution.subSection = s.subSection;
 
-  if (state?.suggestion) {
-    const s = state.suggestion;
+    // שומרים את הספר כפי שקיבלנו מהבקשה (ייתעדכן אחרי טעינת ספרים)
+    this.newSolution.book = s.book;
 
-    this.isFromSuggestion = true;
+    // ---- מילוי מקצוע ----
+    this.selectedSubject = s.book.subject.id === 1 ? "math" : "english";
 
-    // מילוי אוטומטי של הנתונים מהבקשה
-    this.newSolution.page = s.page!;
-    this.newSolution.exercise = s.exercise!;
-    this.newSolution.section = s.section!;
-    this.newSolution.subSection = s.subSection!;
-    this.newSolution.book = s.book!;
+    // ---- מילוי שכבה ----
+    this.selectedGrade = s.book.grade;
   }
 
-  // 2) טעינת ספרים כרגיל
+  // ===========================
+  // 2) טעינת כל הספרים מהשרת
+  // ===========================
   this._booksService.getAll().subscribe({
     next: (books) => {
       this.allBooks = books;
+
       this.booksListMath = books.filter(b => b.subject?.id === 1);
       this.booksListEnglish = books.filter(b => b.subject?.id === 2);
+
+      // אם מגיעים מדף בקשה → צריך להכין booksFiltered ולמצוא את הספר הנכון
+      if (this.isFromSolution && this.newSolution.book) {
+
+        const targetSubjectId = this.newSolution.book.subject?.id;
+        const targetGrade = this.newSolution.book.grade;
+        const targetBookId = this.newSolution.book.id;
+
+        // ---- יצירת booksFiltered ע"פ מקצוע + שכבה ----
+        this.booksFiltered = this.allBooks.filter(b =>
+          b.subject?.id === targetSubjectId &&
+          b.grade === targetGrade
+        );
+
+        // ---- למצוא את האובייקט הנכון מתוך booksFiltered ----
+        const found = this.booksFiltered.find(b => b.id === targetBookId);
+        if (found) {
+          this.newSolution.book = found;  
+        }
+      }
     },
     error: (err) => console.log(err)
   });
-  }
+}
+
+
   //בחירת מקצוע
   onSubjectChange() {
-     if (this.isFromSuggestion) return;
+     if (this.isFromSolution) return;
     this.selectedGrade = "";
     this.booksFiltered = [];
   }
 
   //בחירת כיתה לאחר בחירת מקצוע
   onGradeChange() {
-    if (this.isFromSuggestion) return;
+    if (this.isFromSolution) return;
     if (!this.selectedSubject || !this.selectedGrade) {
       this.booksFiltered = [];
       return;
@@ -158,7 +178,7 @@ export class AddSolution {
       this.newSolution.book = { id: this.newSolution.book.id } as any;
     }
 
-    console.log("📤 suggestion we send:", this.newSolution);
+    console.log("📤 solution we send:", this.newSolution);
 
     // ---------------------
     // 4) שליחה לשרת

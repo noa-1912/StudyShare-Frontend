@@ -23,7 +23,7 @@ export class SuggestionDetails {
   }
  addSolution() {
 this.router.navigate(['/add-solution'], {
-  state: { suggestion: this.suggestionToShow }
+  state: { solution: this.suggestionToShow }
 });
   }
   ngOnInit(): void {
