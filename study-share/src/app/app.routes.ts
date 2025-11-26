@@ -10,7 +10,7 @@ import { SuggestionDetails } from './components/suggestion-details/suggestion-de
 import { SolutionSearchComponent } from './components/solution-search/solution-search';
 import { SolutionResults } from './components/solution-results/solution-results';
 import { SolutionDetails } from './components/solution-details/solution-details';
-
+import { AIChat } from './components/ai-chat/ai-chat';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +19,7 @@ export const routes: Routes = [
   { path: 'home', component: Home },
   {path: 'solution-results', component: SolutionResults},
 {path: 'solution-details', component: SolutionDetails},
+{path:'ai-chat', component: AIChat},
   
   { path: 'suggestion-list', component: SuggestionList },
   {path: 'search-solution', component: SolutionSearchComponent},

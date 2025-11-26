@@ -1,0 +1,30 @@
+<div class="chat-box">
+
+  <!-- תיבת ההודעות -->
+  <div class="messages">
+    <div *ngFor="let msg of messages">
+
+      <!-- הודעת משתמש -->
+      <div *ngIf="msg.sender === 'user'" class="user-message">
+        {{ msg.text }}
+      </div>
+
+      <!-- הודעת AI -->
+      <div *ngIf="msg.sender === 'ai'" class="ai-message">
+        {{ msg.text }}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- קלט וכפתור -->
+  <div class="input-area">
+    <input 
+      [(ngModel)]="inputMessage"
+      placeholder="שאל שאלה..."
+      class="chat-input"
+    />
+    <button (click)="send()" class="send-btn">שליחה</button>
+  </div>
+
+</div>
