@@ -35,18 +35,43 @@ export class AIChat {
     this.conversationId = savedConversation;
   }
 
-  send() {
-    const text = this.inputMessage.trim();
-    if (!text) return;
+//   send() {
+//     const text = this.inputMessage.trim();
+//     if (!text) return;
 
-    this.messages.push({ sender: 'user', text });
+//     this.messages.push({ sender: 'user', text });
 
-this.aiService.sendMessage(text, this.conversationId).subscribe({
-  next: (res) => this.messages.push({ sender: 'ai', text: res }),
-  error: (err) => console.error(err)
-});
+// this.aiService.sendMessage(text, this.conversationId).subscribe({
+//   next: (res) => this.messages.push({ sender: 'ai', text: res }),
+//   error: (err) => console.error(err)
+// });
 
 
-    this.inputMessage = '';
+//     this.inputMessage = '';
+//   }
+send() {
+  const text = this.inputMessage.trim();
+  if (!text) return;
+
+  this.messages.push({ sender: 'user', text });
+
+  this.aiService.streamMessage(text, this.conversationId).subscribe({
+    next: chunk => this.addChunk(chunk),
+    complete: () => console.log("AI finished")
+  });
+
+  this.inputMessage = '';
+}
+
+addChunk(chunk: string) {
+  const last = this.messages[this.messages.length - 1];
+
+  if (!last || last.sender !== 'ai') {
+    this.messages.push({ sender: 'ai', text: chunk });
+  } else {
+    last.text += chunk;
   }
+}
+
+
 }

@@ -23,4 +23,47 @@ export class AiChatService {
       responseType: 'text'     // ⭐ כי השרת מחזיר String
     });
   }
+
+
+
+
+  streamMessage(message: string, conversationId: string): Observable<string> {
+
+  return new Observable(observer => {
+
+fetch("http://localhost:8080/api/ai/chat/stream", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message, conversationId })
+})
+
+
+    .then(response => {
+      const reader = response.body!.getReader();
+      const decoder = new TextDecoder();
+
+      function read() {
+        reader.read().then(({ done, value }) => {
+          if (done) {
+            observer.complete();
+            return;
+          }
+
+          const text = decoder.decode(value, { stream: true });
+          const clean = text.replace(/^data:/gm, "");
+          observer.next(clean);
+
+          read();
+        });
+      }
+
+      read();
+    })
+    .catch(err => observer.error(err));
+
+  });
+}
+
+
+
 }
