@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { UsersService } from '../../service/user-service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { from } from 'rxjs';
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -19,6 +20,10 @@ export class SignupComponent {
   email: string = '';
   imagePath: string = '';
   public selectedFile?: File;
+  formSubmitted: boolean = false;
+  errorMsg = ""; // יציג הודעת שגיאה מהשרת
+
+
   constructor(private userService: UsersService, private router: Router) {
 
   }
@@ -40,20 +45,33 @@ export class SignupComponent {
   //ניצור פונקציה שתופעל כאשר נשלחת בקשת ההרשמה
   onSignup(form: any): void {
 
-    if (form.valid) { //בדיקת טופס תקין אם שדות לא ריקים
-      const { name, password, email } = form.value; //מקבל את הערכים מהטופס
-      this.userService.signup(name, password, email, this.selectedFile).subscribe({
-        next: (user) => {
-          console.log('הרשמה הצליחה:', user);
-          this.router.navigate(['/signin']);
-        },
-        error: (error) => {
-          console.error('הרשמה נכשלה:', error);
-          alert('הרשמה נכשלה, נא לנסות שוב.');
-        }
-      });
+    this.formSubmitted = true;   // ← מפעיל הצגת הודעות שגיאה כולל תמונה ❗
 
+
+    if (!form.valid) {// בודק אם יש טעויות בטופס לפני שליחה לשרת
+      alert('נא למלא את כל השדות כראוי.');
+      return;
     }
-  }
 
+    if (!this.selectedFile) {// בודק אם נבחרה תמונת פרופיל
+      alert("חובה לבחור תמונת פרופיל 📷");
+      return;
+    }
+
+
+    const { name, password, email } = form.value; //מקבל את הערכים מהטופס
+    this.userService.signup(name, password, email, this.selectedFile).subscribe({
+      next: (user) => {
+        console.log('הרשמה הצליחה:', user);
+        this.router.navigate(['/signin']);
+      },
+      error: (error) => {
+        console.error('הרשמה נכשלה:', error.error);
+        alert(this.errorMsg = error.error);
+      }
+    });
+
+  }
 }
+
+

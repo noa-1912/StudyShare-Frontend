@@ -33,9 +33,8 @@ export class UsersService {
   signin(email: string, password: string): Observable<UsersModel> {
     return this.http.post<UsersModel>(
       'http://localhost:8080/api/user/signin',
-      { email, password },
+      { email, password },   // מה נשלח לשרת
       {
-        responseType: 'text' as 'json', // ⬅️ זה בדיוק הניסוח הנכון כדי שלא תהיה שגיאת TypeScript
         withCredentials: true            // מאפשר שליחה ושמירה של cookie
       }
     );

@@ -1,22 +1,31 @@
-
 <div class="signin-container">
-<h2>התחברות</h2>
-   <!-- //לחיצה על הכפתור ONLOGIN קורא לפונקציה NGSUBMIY -->
-  <form #signinForm="ngForm" (ngSubmit)="onSignin(signinForm)"> <!--יוצר טופס אימות עם ngForm -->
-    <div class="form-group"><!--זה הטופס של ההתחברות ותפקידו לאמת את המשתמש-->
-      <label for="username">מייל:</label><!--תווית למשתמש-->
-      <!--הכנסת שם משתמש-->
-      <!--מחבר את הערכים שהמשתמש מקליד-->
-      <input id="email" name="email" [(ngModel)]="email" required>
-    </div>
-    <!--מונע מהכפתור לעבוד אם הטופס לא תקין-->
-    <div class="form-group">
-        <!--זה הטופס של הסיסמה ותפקידו לאמת את המשתמש-->
-      <label for="password">סיסמה:</label>
-        <!--תווית לסיסמה-->
-      <input id="password" name="password" type="password" [(ngModel)]="password" required>
-    </div>
-    <!--מונע מהכפתור לעבוד אם הטופס לא תקין-->
-    <button type="submit" [disabled]="!signinForm.valid">התחבר</button>
+  <h2>התחברות</h2>
+
+  <form #signinForm="ngForm" (ngSubmit)="onSignin(signinForm); formSubmitted=true">
+
+    <!-- מייל -->
+    <label>אימייל:</label>
+    <input type="email" name="email" [(ngModel)]="email" required email #emailCtrl="ngModel">
+
+    <p *ngIf="emailCtrl.invalid && (emailCtrl.touched || formSubmitted)" class="error">
+      חובה להכניס אימייל תקין
+    </p>
+
+    <!-- סיסמה -->
+    <label>סיסמה:</label>
+    <input type="password" name="password" [(ngModel)]="password" required minlength="4" #passCtrl="ngModel">
+
+    <p *ngIf="passCtrl.invalid && (passCtrl.touched || formSubmitted)" class="error">
+      סיסמה חייבת להיות לפחות 4 תווים
+    </p>
+
+    <!-- ❗ הודעת שגיאה מהשרת -->
+     
+    <p *ngIf="loginError" class="error server">{{loginError}}</p>
+
+    <button type="submit">
+      התחבר
+    </button>
+
   </form>
 </div>

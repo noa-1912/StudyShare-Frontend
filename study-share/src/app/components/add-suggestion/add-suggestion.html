@@ -1,64 +1,104 @@
+<!-- <form #AddForm="ngForm">
 
-<form #AddForm="ngForm">
+<label>מקצוע:</label>
+<select [(ngModel)]="selectedSubject" name="subject" (change)="onSubjectChange()">
+  <option value="">בחר מקצוע</option>
+  <option value="math">📘 מתמטיקה</option>
+  <option value="english">📗 אנגלית</option>
+</select>
 
-  <!-- בחירת מקצוע -->
-  <label>מקצוע:</label>
-  <select [(ngModel)]="selectedSubject" (change)="onSubjectChange()" name="subject" required>
-    <option value="">בחר מקצוע</option>
-    <option value="math">📘 מתמטיקה</option>
-    <option value="english">📗 אנגלית</option>
-  </select>
+<label>שכבה:</label>
+<select [(ngModel)]="selectedGrade" name="grade" (change)="onGradeChange()">
+  <option value="">בחר שכבה</option>
+  <option *ngFor="let g of grades" [value]="g">{{ g }}</option>
+</select>
 
-  <!-- בחירת שכבה -->
-  <label>שכבה:</label>
-  <select [(ngModel)]="selectedGrade" (change)="onGradeChange()" name="grade" required [disabled]="!selectedSubject">
-    <option value="">בחר שכבה</option>
-    <option *ngFor="let g of grades" [value]="g">{{ g }}</option>
-  </select>
-
-  <!-- בחירת ספר -->
-<!-- <label>ספר:</label>
-<select [(ngModel)]="newSuggestion.book" name="book" required [disabled]="booksFiltered.length === 0">
-  <option value="">בחר ספר</option>
-  <option *ngFor="let b of booksFiltered" [ngValue]="b">
-    {{ b.bookName }}
-  </option>
-</select> -->
-<!-- בחירת ספר -->
 <label>ספר:</label>
-<select [(ngModel)]="newSuggestion.book"
-        name="book"
-        required
-        [disabled]="booksFiltered.length === 0">
-  <option value="">בחר ספר</option>
+<select [(ngModel)]="newSuggestion.book" name="book">
+  <option [ngValue]="null">בחר ספר</option>
   <option *ngFor="let b of booksFiltered" [ngValue]="b">
     {{ b.bookName }}
   </option>
 </select>
 
 
+<label>עמוד:</label>
+<input type="number" [(ngModel)]="newSuggestion.page" name="page">
 
+<label>תרגיל:</label>
+<input type="number" [(ngModel)]="newSuggestion.exercise" name="exercise">
 
-  <label for="page">עמוד:</label>
-  <input type="number" id="page" [(ngModel)]="newSuggestion.page" name="page" required />
+<label>סעיף:</label>
+<input type="number" [(ngModel)]="newSuggestion.section" name="section">
 
-  <label for="exercise">תרגיל:</label>
-  <input type="number" id="exercise" [(ngModel)]="newSuggestion.exercise" name="exercise" required />
+<label>תת סעיף:</label>
+<input type="number" [(ngModel)]="newSuggestion.subSection" name="subSection">
 
-  <label for="section">סעיף:</label>
-  <input type="number" id="section" [(ngModel)]="newSuggestion.section" name="section" required />
+<label>תוכן:</label>
+<textarea [(ngModel)]="newSuggestion.content" name="content"></textarea>
 
-  <label for="subSection">תת-סעיף:</label>
-  <input type="number" id="subSection" [(ngModel)]="newSuggestion.subSection" name="subSection" required />
+<button (click)="addSuggestion()">הוסף בקשה</button>
 
-  <label for="content">תוכן בקשה:</label>
-  <textarea id="content" [(ngModel)]="newSuggestion.content" name="content" required></textarea>
+</form> -->
 
-  <label for="image">תמונה (אופציונלי):</label>
+<form #AddForm="ngForm">
+
+  <label>מקצוע:</label>
+  <select [(ngModel)]="selectedSubject"
+          (change)="onSubjectChange()"
+          name="subject"
+          required
+          [disabled]="isFromSolution">
+    <option value="">בחר מקצוע</option>
+    <option value="math">📘 מתמטיקה</option>
+    <option value="english">📗 אנגלית</option>
+  </select>
+
+  <label>שכבה:</label>
+  <select [(ngModel)]="selectedGrade"
+          (change)="onGradeChange()"
+          name="grade"
+          required
+          [disabled]="isFromSolution || !selectedSubject">
+    <option value="">בחר שכבה</option>
+    <option *ngFor="let g of grades" [value]="g">{{ g }}</option>
+  </select>
+
+  <label>ספר:</label>
+  <select [(ngModel)]="newSuggestion.book"
+          name="book"
+          required
+          [compareWith]="compareBooks"
+          [disabled]="isFromSolution || booksFiltered.length === 0">
+    <option [ngValue]="null">בחר ספר</option>
+    <option *ngFor="let b of booksFiltered" [ngValue]="b">
+      {{ b.bookName }}
+    </option>
+  </select>
+
+  <label>עמוד:</label>
+  <input type="number" [(ngModel)]="newSuggestion.page" name="page" required [readonly]="isFromSolution"/>
+
+  <label>תרגיל:</label>
+  <input type="number" [(ngModel)]="newSuggestion.exercise" name="exercise" required [readonly]="isFromSolution"/>
+
+  <label>סעיף:</label>
+  <input type="number" [(ngModel)]="newSuggestion.section" name="section" [readonly]="isFromSolution"/>
+
+  <label>תת סעיף:</label>
+  <input type="number" [(ngModel)]="newSuggestion.subSection" name="subSection" [readonly]="isFromSolution"/>
+
+  <label>תוכן בקשה:</label>
+  <textarea [(ngModel)]="newSuggestion.content" name="content" required placeholder="תכתבי כאן מה צריך לפתור 🙂"></textarea>
+
+  <!-- 🔥 כאן החזרת הוספת תמונה -->
+  <label for="image">צרפי תמונה (לא חובה):</label>
   <input type="file" id="image" (change)="onImageSelected($event)" />
-<div *ngIf ="previewUrl" class="preview-container">
-    <h4>תצוגה מקדימה:</h4>
-    <img [src]="previewUrl" alt="תצוגת תמונה" class="preview-img" />
+
+  <div *ngIf="previewUrl" class="preview-container">
+      <h4>תצוגה מקדימה:</h4>
+      <img [src]="previewUrl" class="preview-img">
   </div>
- <button (click)="addSuggestion()" >הוספת בקשה:</button>
+
+  <button (click)="addSuggestion()">הוספת בקשה</button>
 </form>

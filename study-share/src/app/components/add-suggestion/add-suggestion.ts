@@ -246,21 +246,47 @@ export class AddSuggestion {
   // ngOnInit() {
   //   this.booksList = this._booksService.getAllBooks();
   // }
+  isFromSolution:boolean = false;
 
-  ngOnInit(): void {
-    this._booksService.getAll().subscribe({
-      next: (books) => {
-        this.allBooks = books;
+ngOnInit(){
+  const state = history.state;
 
-        this.booksListMath = books.filter(b => b.subject?.id === 1);
-        this.booksListEnglish = books.filter(b => b.subject?.id === 2);
-        console.log("📚 Books from server:", books);
+  this._booksService.getAll().subscribe(books=>{
+    this.allBooks = books;
 
-      },
-      error: (err) => {
-        console.log("❌ שגיאה בקבלת ספרים:", err);
+    if(state?.bookId){
+      this.isFromSolution = true;   // 🔥 כמו add-solution
+
+      this.selectedSubject = state.subject;
+      this.selectedGrade = state.grade;
+
+      this.newSuggestion.page        = state.page;
+      this.newSuggestion.exercise    = state.exercise;
+      this.newSuggestion.section     = state.section;
+      this.newSuggestion.subSection  = state.subSection;
+
+      const foundBook = books.find(b => b.id == state.bookId);
+
+      if(foundBook){
+        this.filterBooks();
+
+        setTimeout(()=>{
+          this.newSuggestion.book = foundBook; // 📌 נבחר אוטומטי כמו אצלך בהוספת פתרון
+        },15);
       }
-    });
+    }
+  })
+}
+
+compareBooks(b1:any,b2:any){ return b1 && b2 && b1.id===b2.id; }
+
+
+
+
+  // ⬇ אותה פונקציה — רק חובה להשאיר אותה!
+  filterBooks() {
+    const sub = this.selectedSubject === "math" ? 1 : 2;
+    this.booksFiltered = this.allBooks.filter(b => b.subject?.id === sub && b.grade === this.selectedGrade);
   }
 
 
@@ -347,47 +373,37 @@ export class AddSuggestion {
 
   addSuggestion() {
 
-    // ---------------------
-    // 1) להביא את המשתמש
-    // ---------------------
-    // const raw = localStorage.getItem("user");
-    // if (!raw) {
-    //   alert("❌ לא נמצא משתמש מחובר");
-    //   return;
-    // }
+    // 1) שליפה מה־localStorage
+    const raw = localStorage.getItem("user");                 // מביא מידע על המשתמש המחובר
+    if (!raw) {                                              // אם לא קיים → אין משתמש מחובר
+      alert("❗ עלייך להתחבר לפני הוספת בקשה");
+      return;
+    }
 
-    // // user הוא אובייקט אמיתי עכשיו
-    // const user = JSON.parse(JSON.parse(raw));
+    const user = JSON.parse(raw);             // הופך את ה־string לאובייקט אמיתי
+    this.newSuggestion.user = { id: user.id };               // שולח לשרת רק את ה־ID הדרוש
 
-    // // ---------------------
-    // // 2) לשלוח רק ID של user
-    // // ---------------------
-    // this.newSuggestion.user = { id: user.id };
-
-    // ---------------------
-    // 3) לשלוח רק ID של book
-    // ---------------------
+    // 2) הכנסת book בתור ID בלבד — מה ששרת מצפה לו
     if (this.newSuggestion.book) {
       this.newSuggestion.book = { id: this.newSuggestion.book.id } as any;
     }
 
-    console.log("📤 suggestion we send:", this.newSuggestion);
+    // 3) בדיקה לוגית לפני שליחה
+    if (!this.newSuggestion.content) {
+      alert("נא לכתוב תוכן בקשה לפני שליחה");
+      return;
+    }
 
-    // ---------------------
     // 4) שליחה לשרת
-    // ---------------------
     this._suggestionService.add(this.newSuggestion, this.selectedFile).subscribe({
-      next: (res) => {
-        console.log("Suggestion added:", res);
-        this.router.navigate(['/suggestion-list']);
+      next: () => {
+        alert("✔ בקשה נוספה בהצלחה!");
+        this.router.navigate(['/suggestion-list']);          // מעבר לרשימת בקשות
       },
-      error: (err) => {
-        console.log(err);
-        alert("❌ בקשה נכשלה — בדקי קונסול");
-      }
+      error: () => alert("❌ הבקשה נכשלה — בדקי קונסול")
     });
-
   }
+
 
 
 

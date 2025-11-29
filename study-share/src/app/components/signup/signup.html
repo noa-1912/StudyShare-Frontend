@@ -1,27 +1,54 @@
-
 <div class="signup-container">
   <h2>הרשמה</h2>
-  <form #signupForm="ngForm" (ngSubmit)="onSignup(signupForm)">
-    <div class="form-group">
-      <label for="name">שם משתמש:</label>
-      <input id="name" name="name" [(ngModel)]="name" required>
-    </div>
-        <div class="form-group">
-      <label for="password">סיסמה:</label>
-      <input id="password" name="password" type="password" [(ngModel)]="password" required>
-        <!-- הכנס את הסיסמה -->                                        
-    </div>
-    <div class="form-group">
-      <label for="email">אימייל:</label>
-      <input id="email" name="email" type="email" [(ngModel)]="email" required>
-    </div>
-      <label for="image">בחירת תמונת פרופיל:</label>
-  <input type="file" id="image" (change)="onImageSelected($event)" />
-<div *ngIf ="previewUrl" class="preview-container">
-    <h4>תצוגה מקדימה:</h4>
-    <img [src]="previewUrl" alt="תצוגת תמונה" class="preview-img" />
-  </div>
+  <form #signupForm="ngForm" (ngSubmit)="onSignup(signupForm); formSubmitted=true">
 
-    <button type="submit" [disabled]="!signupForm.valid">הירשם</button>
+    <!-- שם -->
+    <div class="form-group">
+      <label>שם משתמש:</label>
+      <input type="text" name="name" [(ngModel)]="name" required minlength="2" #nameCtrl="ngModel">
+
+      <p *ngIf="nameCtrl.invalid && nameCtrl.touched" class="error">
+        שם חייב להכיל לפחות 2 תווים
+      </p>
+    </div>
+
+    <!-- סיסמה -->
+    <div class="form-group">
+      <label>סיסמה:</label>
+      <input type="password" name="password" [(ngModel)]="password" required minlength="4" #passCtrl="ngModel">
+
+      <p *ngIf="passCtrl.invalid && passCtrl.touched" class="error">
+        סיסמה חייבת להכיל 4 תווים לפחות
+      </p>
+    </div>
+
+    <!-- מייל -->
+    <div class="form-group">
+      <label>אימייל:</label>
+      <input type="email" name="email" [(ngModel)]="email" required email #emailCtrl="ngModel">
+
+      <p *ngIf="emailCtrl.invalid && emailCtrl.touched" class="error">
+        אימייל לא תקין
+      </p>
+    </div>
+
+    <!-- תמונה -->
+    <label>תמונת פרופיל:</label>
+    <input type="file" name="image" ngModel (change)="onImageSelected($event)" #fileCtrl="ngModel">
+
+    <p *ngIf="!selectedFile && (fileCtrl.touched || formSubmitted)" class="error">
+      חובה להעלות תמונת פרופיל
+    </p>
+
+
+    <div *ngIf="previewUrl" class="preview-container">
+      <img [src]="previewUrl" class="preview-img">
+    </div>
+
+    
+    <button type="submit" [disabled]="signupForm.invalid || !selectedFile">
+      הירשם
+    </button>
+
   </form>
 </div>

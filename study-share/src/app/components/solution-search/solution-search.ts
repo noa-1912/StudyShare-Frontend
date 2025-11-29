@@ -23,15 +23,12 @@ export class SolutionSearchComponent {
 
   // כל הספרים מהשרת
   public allBooks: BooksModel[] = [];
-
   // מתמטיקה / אנגלית
   public selectedSubject: 'math' | 'english' | '' = '';
   public booksFiltered: BooksModel[] = [];
-
   // שכבות
   public grades: string[] = ['ט', 'י', 'יא', 'יב'];
   public selectedGrade: 'ט' | 'י' | 'יא' | 'יב' | '' = '';
-
   // הקריטריונים לחיפוש
   public solution: Partial<SolutionsModel> = {
     page: 0,
@@ -110,12 +107,6 @@ export class SolutionSearchComponent {
     this.results = [];
 
     this._solutionService.searchSolution(criteria.bookId, criteria.page, criteria.exercise).subscribe({
-      // next: (solutions) => {
-      //   this.isSearching = false;
-      //   this.results = solutions;
-      //   this.notFound = solutions.length === 0;
-      //   console.log('✅ solutions found:', solutions);
-      // }
       next: (solutions) => {
         this.isSearching = false;
 
@@ -123,15 +114,25 @@ export class SolutionSearchComponent {
         this.results = solutions ?? [];
 
         this.notFound = this.results.length === 0;
-     this._solutionService.lastSearchResults = this.results;
-this.router.navigate(['/solution-results']);
+        this._solutionService.lastSearchResults = this.results;
 
+        if (this.notFound) {
+          this.router.navigate(['/solution-results']), {
+            state: {
+              noResult: true,              // ← תואם למה שנשתמש ברכיב התוצאות
+              bookId: criteria.bookId,
+              page: criteria.page,
+              exercise: criteria.exercise,
+              section: criteria.section,
+              subSection: criteria.subSection
+            }
+          };
+
+        }
+        else {
+          this.router.navigate(['/solution-results']);
+        }
       },
-      // error: (err) => {
-      //   this.isSearching = false;
-      //   console.log('❌ שגיאה בחיפוש פתרונות:', err);
-      //   alert('ארעה שגיאה בחיפוש הפתרון – בדקי קונסול');
-      // }
       error: (err) => {
         this.isSearching = false;
 

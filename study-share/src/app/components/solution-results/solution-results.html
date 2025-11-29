@@ -1,17 +1,32 @@
 <h1>כל הפתרונות</h1>
 
-<div *ngFor ="let s of solutions; index as i">
-    <div class="solution">
-        <div class="user-info">
+<!-- ❗ במקרה שאין תוצאות -->
+<div *ngIf="solutions.length === 0" class="no-results-box">
+    <h2>❌ לא נמצאו פתרונות לתרגיל שחיפשת</h2>
 
-            <img *ngIf="s.userDTO?.imagePath" [src]="'http://localhost:8080/api/user/image/' + s.userDTO?.imagePath"
-                alt="תמונת משתמש" class="profile-image" />
+    <button class="request-btn" (click)="goToSuggestionForm()">
+        ➕ הוספת בקשה לפתרון השאלה
+    </button>
+</div>
 
+<!-- ✔ מוצג רק אם יש פתרונות -->
+<div *ngIf="solutions.length > 0">
+    
+    <div *ngFor="let s of solutions; index as i">
+        <div class="solution">
+            <div class="user-info">
 
-            <h2>{{ s.userDTO?.name }}</h2>
+                <img *ngIf="s.userDTO?.imagePath"
+                     [src]="'http://localhost:8080/api/user/image/' + s.userDTO?.imagePath"
+                     alt="תמונת משתמש"
+                     class="profile-image" />
+
+                <h2>{{ s.userDTO?.name }}</h2>
+            </div>
+
+            <h3>תוכן: {{ s.content }}</h3>
         </div>
-
-        <h3>תוכן: {{ s.content }}</h3>
+        <button (click)="showDetailes(s)">צפה בפרטים</button>
     </div>
-    <button (click)="showDetailes(s)">צפה בפרטים</button>
+
 </div>
