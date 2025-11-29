@@ -13,7 +13,7 @@ export class SuggestionModel {
   imagePath?: string;
 
     user?: any;              // ← תואם ל- private Users user
-      userDTO?: UsersModel;  // מוצג במסך (שם, תמונה וכו')
+   userDTO?: UsersModel;  // מוצג במסך (שם, תמונה וכו')
 
     book?: BooksModel;              // ← תואם ל- private Books book
 

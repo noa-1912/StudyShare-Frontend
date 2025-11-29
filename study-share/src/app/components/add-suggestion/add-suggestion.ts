@@ -237,7 +237,7 @@ export class AddSuggestion {
     content: '',
     uploadDate: new Date(),
     imagePath: '',//לבדוק
-    user: undefined,//לבדוק
+    userDTO: undefined,//לבדוק
     book: undefined//לבדוק
   };
 

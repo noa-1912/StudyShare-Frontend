@@ -11,7 +11,7 @@ import { SolutionSearchComponent } from './components/solution-search/solution-s
 import { SolutionResults } from './components/solution-results/solution-results';
 import { SolutionDetails } from './components/solution-details/solution-details';
 import { AIChat } from './components/ai-chat/ai-chat';
-
+import { MySuggestions } from './components/my-suggestions/my-suggestions';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '', redirectTo: 'suggestion-list', pathMatch: 'full' },
@@ -20,7 +20,7 @@ export const routes: Routes = [
   {path: 'solution-results', component: SolutionResults},
 {path: 'solution-details', component: SolutionDetails},
 {path:'ai-chat', component: AIChat},
-  
+  {path:'my-suggestions', component: MySuggestions},
   { path: 'suggestion-list', component: SuggestionList },
   {path: 'search-solution', component: SolutionSearchComponent},
   {path: 'suggestion-details/:id', component: SuggestionDetails},
