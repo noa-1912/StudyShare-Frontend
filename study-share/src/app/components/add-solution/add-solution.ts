@@ -157,23 +157,25 @@ ngOnInit(): void {
     // ---------------------
     // 1) להביא את המשתמש
     // ---------------------
-    // const raw = localStorage.getItem("user");
-    // if (!raw) {
-    //   alert("❌ לא נמצא משתמש מחובר");
-    //   return;
-    // }
+    const raw = localStorage.getItem("user");
+    if (!raw) {
+      alert("❌ לא נמצא משתמש מחובר");
+      return;
+    }
 
     // // user הוא אובייקט אמיתי עכשיו
-    // const user = JSON.parse(JSON.parse(raw));
+ const user = JSON.parse(raw);
+
 
     // // ---------------------
     // // 2) לשלוח רק ID של user
     // // ---------------------
-    // this.newSolution.user = { id: user.id };
+    this.newSolution.user = { id: user.id };
 
     // ---------------------
     // 3) לשלוח רק ID של book
     // ---------------------
+    
     if (this.newSolution.book) {
       this.newSolution.book = { id: this.newSolution.book.id } as any;
     }
