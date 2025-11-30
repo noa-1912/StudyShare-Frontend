@@ -10,11 +10,22 @@ export class SolutionService {
 
   private apiUrl = 'http://localhost:8080/api/solution';
 
+  // נוסיף שמירת נתוני חיפוש
+public lastSearchCriteria?: { 
+  bookId: number; 
+  page: number; 
+  exercise: number; 
+  section?: number; 
+  subSection?: number; 
+};
+
   constructor(private _httpClient: HttpClient) { }
 public lastSearchResults: SolutionsModel[] = [];
 
   // חיפוש פתרון
   searchSolution(bookId: number, page: number, exercise: number): Observable<SolutionsModel[]> {
+       this.lastSearchCriteria = { bookId, page, exercise };
+
     return this._httpClient.get<SolutionsModel[]>(
       `http://localhost:8080/api/solution/searchSolutions/${bookId}/${page}/${exercise}`
     );

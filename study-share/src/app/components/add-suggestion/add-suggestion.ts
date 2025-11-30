@@ -246,59 +246,50 @@ export class AddSuggestion {
   // ngOnInit() {
   //   this.booksList = this._booksService.getAllBooks();
   // }
-  isFromSolution:boolean = false;
+ public isFromSuggestion: boolean = false;
 
-ngOnInit(){
-  const state = history.state;
+ngOnInit(): void {
 
-  this._booksService.getAll().subscribe(books=>{
-    this.allBooks = books;
+  const state = history.state?.suggestion;
+  console.log("📥 STATE RECEIVED:", state);
 
-    if(state?.bookId){
-      this.isFromSolution = true;   // 🔥 כמו add-solution
-
-      this.selectedSubject = state.subject;
-      this.selectedGrade = state.grade;
-
-      this.newSuggestion.page        = state.page;
-      this.newSuggestion.exercise    = state.exercise;
-      this.newSuggestion.section     = state.section;
-      this.newSuggestion.subSection  = state.subSection;
-
-      const foundBook = books.find(b => b.id == state.bookId);
-
-      if(foundBook){
-        this.filterBooks();
-
-        setTimeout(()=>{
-          this.newSuggestion.book = foundBook; // 📌 נבחר אוטומטי כמו אצלך בהוספת פתרון
-        },15);
-      }
-    }
-  })
-}
-
-compareBooks(b1:any,b2:any){ return b1 && b2 && b1.id===b2.id; }
-
-
-
-
-  // ⬇ אותה פונקציה — רק חובה להשאיר אותה!
-  filterBooks() {
-    const sub = this.selectedSubject === "math" ? 1 : 2;
-    this.booksFiltered = this.allBooks.filter(b => b.subject?.id === sub && b.grade === this.selectedGrade);
+  if(state){
+      this.newSuggestion.page       = state.page;
+      this.newSuggestion.exercise   = state.exercise;
+      this.newSuggestion.section    = state.section;
+      this.newSuggestion.subSection = state.subSection;
   }
 
+  // טוען ספרים ואז מחפש את הצודק לפי ID
+  this._booksService.getAll().subscribe(res=>{
+      
+      this.allBooks = res;
+
+      if(state?.bookId){
+          const book = this.allBooks.find(b=>b.id === state.bookId);
+          if(book){
+              this.newSuggestion.book = book;
+              this.selectedGrade = book.grade;
+              this.selectedSubject = book.subject?.id===1 ? "math":"english";
+              this.booksFiltered = this.allBooks.filter(b=>b.subject?.id===book.subject?.id && b.grade===book.grade);
+          }
+      }
+
+  });
+
+}
 
 
-  //בחירת מקצוע
-  onSubjectChange() {
+
+onSubjectChange() {
+    if (this.isFromSuggestion) return;
     this.selectedGrade = "";
     this.booksFiltered = [];
   }
 
   //בחירת כיתה לאחר בחירת מקצוע
   onGradeChange() {
+    if (this.isFromSuggestion) return;
     if (!this.selectedSubject || !this.selectedGrade) {
       this.booksFiltered = [];
       return;
@@ -315,6 +306,8 @@ compareBooks(b1:any,b2:any){ return b1 && b2 && b1.id===b2.id; }
     console.log("📘 booksFiltered:", this.booksFiltered);
 
   }
+
+
 
 
 

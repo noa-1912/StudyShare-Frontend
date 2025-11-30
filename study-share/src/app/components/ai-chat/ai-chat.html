@@ -1,30 +1,35 @@
 <div class="chat-box">
 
-  <!-- תיבת ההודעות -->
-  <div class="messages">
+  <!-- הצגת היסטוריית הודעות -->
+  <div class="messages" #scrollMe>
     <div *ngFor="let msg of messages">
 
       <!-- הודעת משתמש -->
-      <div *ngIf="msg.sender === 'user'" class="user-message">
-        {{ msg.text }}
+      <div *ngIf="msg.sender === 'user'" class="user-message bubble">
+        <p dir="auto">{{ msg.text }}</p>
       </div>
 
       <!-- הודעת AI -->
-      <div *ngIf="msg.sender === 'ai'" class="ai-message">
-        {{ msg.text }}
-      </div>
+<!-- הודעת AI -->
+<div *ngIf ="msg.sender === 'ai'" class="ai-message bubble">
+    <p dir="rtl" [innerHTML]="format(msg.text)"></p>
+</div>
+
+
 
     </div>
   </div>
 
-  <!-- קלט וכפתור -->
-  <div class="input-area">
+  <!-- שורת קלט -->
+  <form class="input-area" (ngSubmit)="send()">
     <input 
+      type="text"
       [(ngModel)]="inputMessage"
+      name="inputMessage"
       placeholder="שאל שאלה..."
       class="chat-input"
+      (keyup.enter)="send()"
     />
-    <button (click)="send()" class="send-btn">שליחה</button>
-  </div>
-
+    <button type="submit" class="send-btn">שליחה</button>
+  </form>
 </div>

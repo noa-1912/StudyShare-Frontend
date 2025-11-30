@@ -117,7 +117,7 @@ export class SolutionSearchComponent {
         this._solutionService.lastSearchResults = this.results;
 
         if (this.notFound) {
-          this.router.navigate(['/solution-results']), {
+          this.router.navigate(['/solution-results']),{
             state: {
               noResult: true,              // ← תואם למה שנשתמש ברכיב התוצאות
               bookId: criteria.bookId,

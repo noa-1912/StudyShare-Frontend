@@ -1,34 +1,66 @@
+/* תיבת הצ'אט */
 .chat-box {
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   margin: auto;
   background: white;
-  padding: 15px;
+  padding: 18px;
   border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.08);
+  border: 1px solid #e5e5e5;
+  font-family: Arial, sans-serif;
 }
 
+/* אזור ההודעות */
 .messages {
   max-height: 400px;
   overflow-y: auto;
-  margin-bottom: 10px;
+  padding: 10px;
+  background: #f7f7f7;
+  border-radius: 12px;
+  margin-bottom: 12px;
 }
 
+/* בועות */
+.bubble {
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  animation: fadeIn .25s ease-in-out;
+}
+
+/* הודעת המשתמש */
 .user-message {
-  text-align: right;
   background: #cfe9ff;
-  padding: 8px 12px;
-  margin: 6px 0;
-  border-radius: 12px;
+  text-align: right;
+  direction: rtl;
 }
 
-.ai-message {
-  text-align: left;
-  background: #efefef;
-  padding: 8px 12px;
-  margin: 6px 0;
-  border-radius: 12px;
+/* הודעת AI */
+.ai-message p,
+.user-message p {
+  direction: rtl;
+  unicode-bidi: plaintext;        /* תומך עברית+אנגלית ללא ערבוב */
+  white-space: normal;            /* לא יכפה ירידות שורה */
+  word-break: keep-all;           /* ❗ לא שוברים מילים באמצע */
+  overflow-wrap: break-word;      /* שובר רק כשהשורה באמת לא נכנסת */
+  line-height: 1.6;
+  font-size: 17px;
 }
 
+
+
+
+/* אנימציית כניסה */
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(6px);}
+  to   { opacity:1; transform:translateY(0);}
+}
+
+/* שורת קלט */
 .input-area {
   display: flex;
   gap: 10px;
@@ -36,9 +68,23 @@
 
 .chat-input {
   flex: 1;
-  padding: 8px;
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 .send-btn {
-  padding: 8px 15px;
+  padding: 9px 18px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.send-btn:hover {
+  background: #0b7dda;
 }

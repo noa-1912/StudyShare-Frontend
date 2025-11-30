@@ -29,22 +29,22 @@ export class SolutionResults {
   public subSection?: number;
 
 
-  ngOnInit() {
-    this.solutions = this._solutionsService.lastSearchResults ?? [];
+ngOnInit() {
+  
+  this.solutions = this._solutionsService.lastSearchResults ?? [];
 
-    // קבלת state מהחיפוש
-    const nav = this.router.getCurrentNavigation();
-    const data = nav?.extras.state as any;
+  const c = this._solutionsService.lastSearchCriteria;
+  console.log("📌 Criteria Loaded:", c);
 
-    if (data) {
-      this.noResult = data.noResult;
-      this.bookId = data.bookId;
-      this.page = data.page;
-      this.exercise = data.exercise;
-      this.section = data.section;
-      this.subSection = data.subSection;
-    }
+  if(c){
+    this.bookId = c.bookId;
+    this.page = c.page;
+    this.exercise = c.exercise;
+    this.section = c.section;
+    this.subSection = c.subSection;
   }
+}
+
 
   showDetailes(s: SolutionsModel) {
     if (!s || !s.id) {
@@ -61,17 +61,23 @@ export class SolutionResults {
   }
 
   // 🔥 יצירת בקשה חדשה עם כל נתוני החיפוש
-  goToSuggestionForm() {
-    this.router.navigate(['/add-suggestion'], {
-      state: {
+goToSuggestionForm(){
+  
+  this.router.navigate(['/add-suggestion'], {
+    state:{
+      suggestion:{
         bookId: this.bookId,
         page: this.page,
         exercise: this.exercise,
         section: this.section,
         subSection: this.subSection
       }
-    });
-  }
+    }
+  });
+
+}
+
+
 
 
 }
