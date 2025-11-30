@@ -17,37 +17,54 @@ export class SuggestionDetails {
   onDelete = output<void>();
 
   constructor(private route: ActivatedRoute, private suggestionService: SuggestionService, private router: Router) { }
+  public canDelete = false;
 
   goBack() {
     this.router.navigate(['/suggestion-list']);
   }
- addSolution() {
-this.router.navigate(['/add-solution'], {
-  state: { solution: this.suggestionToShow }
-});
+  addSolution() {
+    this.router.navigate(['/add-solution'], {
+      state: { solution: this.suggestionToShow }
+    });
   }
   ngOnInit(): void {
-    var id: number;
-    this.route.params.subscribe((params) => {
-      id = params['id']
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+
       this.suggestionService.getById(id).subscribe({
         next: (res) => {
           this.suggestionToShow = res;
 
-            // ⭐⭐ כאן נוסיף הדפסות בדיקה ⭐⭐
-      console.log("📌 suggestionToShow =", this.suggestionToShow);
-      console.log("📚 suggestionToShow.book =", this.suggestionToShow.book);
-      console.log("📚 suggestionToShow.books =", this.suggestionToShow.book);
+          const userStr = localStorage.getItem('user');
+          const loggedUser = userStr ? JSON.parse(userStr) : null;
+
+          // ✔ בדיקה אם המשתמש בעל הבקשה
+          this.canDelete = loggedUser && loggedUser.id === this.suggestionToShow?.userDTO?.id;
         },
-        error: (err) => {
-          console.log(err);
-        }
-      })
-    })
+        error: err => console.log(err)
+      });
+    });
   }
+
   onImageError(event: any) {
-  event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
-}
+    event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
+  }
+  delete() {
+
+    if (!this.suggestionToShow || !this.suggestionToShow.id) {
+      console.error("Cannot delete – missing id:", this.suggestionToShow);
+      return;
+    }
+
+    this.suggestionService.delete(this.suggestionToShow.id).subscribe({
+      next: () => {
+        alert("הבקשה נמחקה בהצלחה!");      // 🟢 אפשר להציג הודעה
+        this.router.navigate(['/suggestion-list']); // חוזרים אחרי מחיקה
+      },
+      error: (err) => console.log(err)
+    });
+  }
+
 
 
 

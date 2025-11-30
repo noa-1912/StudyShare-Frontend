@@ -28,3 +28,5 @@
     </div>
     <button class="btn" (click)="addSolution()">הוספת פתרון לבקשה</button>
     <button class="btn" (click)="goBack()">חזרה לרשימת הבקשות</button>
+
+<button class="btn" *ngIf="canDelete" (click)="delete()">מחיקת בקשה</button>

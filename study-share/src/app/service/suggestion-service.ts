@@ -19,6 +19,10 @@ export class SuggestionService {
   getAll(): Observable<SuggestionModel[]> {
     return this._httpClient.get<SuggestionModel[]>(`http://localhost:8080/api/suggesion/getSuggestion`);
   }
+    delete(id: number): Observable<any> {
+    console.log(id);
+    return this._httpClient.delete<any>(`http://localhost:8080/api/suggesion/deleteSuggestion/${id}`);
+  }
 
   // getSuggestionsFromServer(): Observable<SuggestionModel[]> {
   //   const user = JSON.parse(localStorage.getItem('user') || '{}');

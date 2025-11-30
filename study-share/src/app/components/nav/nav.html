@@ -1,7 +1,7 @@
 <nav>
   <ul>
     <li><a routerLink="/add-suggestion" routerLinkActive="active">הוספת בקשה</a>|</li>
-        <li><a routerLink="/add-solution" routerLinkActive="active">הוספת פתרון</a>|</li>
+    <li><a routerLink="/add-solution" routerLinkActive="active">הוספת פתרון</a>|</li>
 
 
     <li><a routerLink="/search-solution" routerLinkActive="active">חיפוש פתרון</a>|</li>
@@ -11,7 +11,10 @@
     <li><a routerLink="/suggestion-list" routerLinkActive="active">כל הבקשות</a>|</li>
     <li><a routerLink="/signup" routerLinkActive="active">הרשמה</a>|</li>
     <li><a routerLink="/signin" routerLinkActive="active">התחברות</a>|</li>
+    <li><a routerLink="/my-solutions" routerLinkActive="active">הפתרונות שלי</a>|</li>
+
     <li><a routerLink="/my-suggestions" routerLinkActive="active">הבקשות שלי</a>|</li>
+
     <!-- ✅ הכפתור עטוף בתוך li -->
 
 
@@ -22,7 +25,7 @@
     <li><a routerLink="/signup" routerLinkActive="active">הרשמה</a></li> -->
   </ul>
 
-  <li *ngIf  ="isLoggedIn">
+  <li *ngIf="isLoggedIn">
     <button (click)="onSignOut()" class="logout-btn">התנתקות</button>
   </li>
 </nav>

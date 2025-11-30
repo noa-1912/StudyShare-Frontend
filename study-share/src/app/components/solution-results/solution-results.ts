@@ -29,21 +29,21 @@ export class SolutionResults {
   public subSection?: number;
 
 
-ngOnInit() {
-  
-  this.solutions = this._solutionsService.lastSearchResults ?? [];
+  ngOnInit() {
 
-  const c = this._solutionsService.lastSearchCriteria;
-  console.log("📌 Criteria Loaded:", c);
+    this.solutions = this._solutionsService.lastSearchResults ?? [];
 
-  if(c){
-    this.bookId = c.bookId;
-    this.page = c.page;
-    this.exercise = c.exercise;
-    this.section = c.section;
-    this.subSection = c.subSection;
+    const c = this._solutionsService.lastSearchCriteria;
+    console.log("📌 Criteria Loaded:", c);
+
+    if (c) {
+      this.bookId = c.bookId;
+      this.page = c.page;
+      this.exercise = c.exercise;
+      this.section = c.section;
+      this.subSection = c.subSection;
+    }
   }
-}
 
 
   showDetailes(s: SolutionsModel) {
@@ -51,7 +51,7 @@ ngOnInit() {
       console.error("Cannot navigate – missing id:", s);
       return;
     }
-    this.router.navigate(['/solution-details', s]);
+    this.router.navigate(['/solution-details', s.id]);
   }
 
 
@@ -61,21 +61,21 @@ ngOnInit() {
   }
 
   // 🔥 יצירת בקשה חדשה עם כל נתוני החיפוש
-goToSuggestionForm(){
-  
-  this.router.navigate(['/add-suggestion'], {
-    state:{
-      suggestion:{
-        bookId: this.bookId,
-        page: this.page,
-        exercise: this.exercise,
-        section: this.section,
-        subSection: this.subSection
-      }
-    }
-  });
+  goToSuggestionForm() {
 
-}
+    this.router.navigate(['/add-suggestion'], {
+      state: {
+        suggestion: {
+          bookId: this.bookId,
+          page: this.page,
+          exercise: this.exercise,
+          section: this.section,
+          subSection: this.subSection
+        }
+      }
+    });
+
+  }
 
 
 

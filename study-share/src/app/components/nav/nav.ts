@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common'; // ✅ הוספת שורה זו
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [CommonModule,RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })
@@ -31,16 +31,6 @@ export class NavComponent implements OnInit {
   }
 
 
-  // onSignOut() {
-  //   this.usersService.signout().subscribe({
-  //     next: () => {
-  //       localStorage.clear();      // מוחק נתוני משתמש מקומי
-  //       this.isLoggedIn = false;   // מעדכן את הסטטוס
-  //       this.router.navigate(['/signin']); // שולח לעמוד ההתחברות
-  //     },
-  //     error: (err: any) => console.error('שגיאה בהתנתקות:', err)
-  //   });
-  // }
   onSignOut() {
     this.usersService.signout().subscribe({
       next: () => {
