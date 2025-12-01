@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { SolutionsModel } from '../../models/solutions.model';
-import { SolutionService } from '../../service/solution-service';
+import { SolutionsModel } from '../models/solutions.model';
+import { SolutionService } from '../service/solution-service';
+
 
 @Component({
   selector: 'app-my-solutions',
@@ -61,6 +62,10 @@ export class MySolutions {
   onImageError(event: any) {
     event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
   }
+  roundStars(avg: number | undefined): number {
+  if (!avg || avg <= 0) return 0;
+  return Math.round(avg / 2);
+}
 
   showDetailes(s: SolutionsModel) {
     if (!s || !s.id) {

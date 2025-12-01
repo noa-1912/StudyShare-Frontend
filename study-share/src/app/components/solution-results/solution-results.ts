@@ -53,6 +53,10 @@ export class SolutionResults {
     }
     this.router.navigate(['/solution-details', s.id]);
   }
+roundStars(avg: number | undefined): number {
+  if (!avg || avg <= 0) return 0;
+  return Math.round(avg / 2);
+}
 
 
 

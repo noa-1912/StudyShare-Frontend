@@ -28,6 +28,29 @@
         </div>
 
     </div>
-<button class="back-btn" *ngIf="canDelete" (click)="delete()">מחיקת פתרון</button>
 
     <button class="back-btn" (click)="goBack()">חזרה לרשימת הפתרונות</button>
+
+
+
+    <!-- 🔷 הוספת תגובה -->
+<div class="add-comment-box">
+  <textarea [(ngModel)]="newCommentText" placeholder="הוספת תגובה..." rows="3"></textarea>
+
+  <input type="number" min="1" max="10" [(ngModel)]="newRating" placeholder="דירוג (1-10)" />
+
+  <button (click)="addComment()">💬 פרסם תגובה</button>
+</div>
+
+
+<!-- 🔷 רשימת תגובות -->
+<div *ngFor="let c of comments" class="comment-card">
+
+  <p class="user-name">{{ c.user.name }} :</p>
+  <p class="comment-text">{{ c.commentText }}</p>
+  <p class="rating">⭐ דירוג: {{ c.ratingValue }}/10</p>
+  <p class="date">📅 {{ c.commentDate | date:"dd/MM/yy" }}</p>
+</div>
+
+
+

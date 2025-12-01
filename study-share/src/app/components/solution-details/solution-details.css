@@ -144,3 +144,99 @@
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+
+/* 📌 כותרת משנה של תגובות */
+.sub-title{
+  font-size: 24px;
+  font-weight: 700;
+  color:#4052f1;
+  margin-top:35px;
+  margin-bottom:15px;
+  text-align:right;
+}
+
+/* בלוק הוספת תגובה */
+.add-comment-box {
+  background:#eef2ff;
+  padding:18px;
+  border-radius:14px;
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.10);
+}
+
+/* תיבת טקסט */
+.add-comment-box textarea,
+.add-comment-box input {
+  width:100%;
+  font-size:17px;
+  padding:10px;
+  border-radius:8px;
+  border:1.5px solid #bdc7ff;
+  outline:none;
+}
+
+.add-comment-box textarea:focus,
+.add-comment-box input:focus {
+  border-color:#4052f1;
+}
+
+/* כפתור הוספת תגובה */
+.add-comment-box button {
+  padding:12px;
+  background:#4052f1;
+  color:white;
+  border:none;
+  font-size:18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  transition:0.2s;
+}
+
+.add-comment-box button:hover{
+  background:#2e3fd8;
+  transform: translateY(-2px);
+}
+
+/* כרטיס תגובה */
+.comment-card {
+  background:#f9faff;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  border-right:5px solid #4052f1;
+  text-align:right;
+}
+
+/* תוכן התגובה */
+.comment-card .user-name{
+  font-weight:700;
+  color:#2d3fde;
+  font-size:18px;
+}
+
+.comment-card .comment-text{
+  margin:5px 0;
+  font-size:17px;
+}
+
+.comment-card .rating{
+  color:#ff9800;
+  font-weight:700;
+}
+
+.comment-card .date{
+  font-size:14px;
+  color:#555;
+}
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
