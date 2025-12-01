@@ -55,7 +55,7 @@ public email: string = '';
     if (state?.solution) {
       const s = state.solution;
       this.isFromSolution = true;
-this.email = state.solution.user?.email || '';
+      this.email = state.solution.userDTO?.email || '';
       // ---- מילוי נתוני הבקשה ----
       this.newSolution.page = s.page;
       this.newSolution.exercise = s.exercise;
@@ -235,6 +235,9 @@ this.email = state.solution.user?.email || '';
     // ---------------------
     // 4) שליחה לשרת
     // ---------------------
+    console.log("📧 THE EMAIL WE SEND:", this.email);
+
+
     this._solutionsService.addWithEmail(this.newSolution, this.selectedFile||null,this.email).subscribe({
       next: (res) => {
         console.log("solution added:", res);
