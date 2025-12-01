@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { UsersModel } from '../../models/users.model';
 import { UsersService } from '../../service/user-service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-home',
     standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
