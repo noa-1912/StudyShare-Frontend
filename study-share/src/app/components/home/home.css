@@ -1,51 +1,156 @@
-.home-container {
-  text-align: center;
-  padding: 2rem;
-  font-family: 'Assistant', sans-serif;
-  background-color: #f4f6fa;
+:host {
+  display: block;
+  direction: rtl;
+  font-family: 'Heebo', sans-serif;
+  background: #eef2ff; /* רקע כחול-לבנדר עדין */
   min-height: 100vh;
 }
 
-.header {
-  margin-bottom: 2rem;
+/* 🔷 תפריט עליון */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 2px;
+  background: #eef2ff;
+ 
+  box-shadow: 0 3px 12px rgba(255, 255, 255, 0.1);
 }
 
-.header h1 {
-  color: #2a4d9b;
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e3a8a;
 }
 
+/* כפתורי התחברות/הרשמה */
+.auth-buttons button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: .25s;
+  font-weight: 600;
+}
+
+.login-btn {
+  background: #cbd5ff; /* לבנדר בהיר */
+  color: #1e3a8a;
+}
+
+.login-btn:hover {
+  background: #b4c0ff;
+}
+
+.signup-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.signup-btn:hover {
+  background: #1d4ed8;
+}
+
+/* 🔷 אזור כותרת מרכזית */
+.hero {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.hero h2 {
+  color: #1e3a8a;
+  font-size: 38px;
+  font-weight: 900;
+}
+
+.hero p {
+  font-size: 20px;
+  color: #27304b;
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+
+/* כפתור אודות */
+.about-btn {
+  padding: 6px 12px;
+  background: linear-gradient(90deg, #1e40af, #3b82f6);
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: .25s;
+  font-weight: 600;
+}
+
+.about-btn:hover {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  transform: translateY(-2px);
+}
+
+/* 🔷 כרטיסי מידע */
 .features {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 25px;
+  margin-top: 40px;
+  padding: 10px 10px;
   flex-wrap: wrap;
 }
 
-.feature {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+.feature-card {
+  background: #ffffff;
   width: 280px;
-  transition: transform 0.2s ease;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  border-top: 5px solid #3b82f6; /* פס כחול יפה */
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  transition: 0.2s;
 }
 
-.feature:hover {
-  transform: scale(1.03);
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-button {
-  background-color: #2a4d9b;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1.2rem;
-  margin-top: 1rem;
-  cursor: pointer;
+.feature-card h3 {
+  color: #1e3a8a;
+  font-size: 22px;
 }
 
-button:hover {
-  background-color: #1f3876;
+.feature-card p {
+  color: #374151;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* 📘 קופסת אודות */
+.about-box {
+  margin: 50px auto 20px;
+  max-width: 750px;
+  background: #ffffff;
+  padding: 35px 40px;
+  border-radius: 16px;
+
+  border-right: 6px solid #2563eb;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+
+  text-align: center;
+}
+
+.about-box h3 {
+  color: #1e3a8a;
+  font-size: 24px;
+  margin-bottom: 12px;
+  font-weight: 800;
+}
+
+.about-box p {
+  color: #374151;
+  font-size: 18px;
+  line-height: 1.9;
+  font-weight: 500;
 }
