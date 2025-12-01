@@ -76,4 +76,23 @@ export class SolutionService {
     );
   }
 
+  addWithEmail(solution: SolutionsModel, file: File| null, email:string): Observable<SolutionsModel> {
+    const formData = new FormData();
+    // מצרפים את התמונה אם יש
+    if (file) {
+      formData.append('image', file); // תואם ל-@RequestPart("image")
+    }
+    // מצרפים את האובייקט JSON
+    formData.append(
+      'solution',
+      new Blob([JSON.stringify(solution)], { type: 'application/json' })
+    );
+
+      formData.append('email', email);
+
+
+    return this._httpClient.post<SolutionsModel>(
+      'http://localhost:8080/api/solution/uploadSolutionsWithEmail', formData
+    );
+  }
 }

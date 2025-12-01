@@ -1,67 +1,4 @@
-<!-- 
-<form #AddForm="ngForm">
 
-  
-  <label>מקצוע:</label>
-  <select [(ngModel)]="selectedSubject" (change)="onSubjectChange()" name="subject" required>
-    <option value="">בחר מקצוע</option>
-    <option value="math">📘 מתמטיקה</option>
-    <option value="english">📗 אנגלית</option>
-  </select>
-
-  
-  <label>שכבה:</label>
-  <select [(ngModel)]="selectedGrade" (change)="onGradeChange()" name="grade" required [disabled]="!selectedSubject">
-    <option value="">בחר שכבה</option>
-    <option *ngFor="let g of grades" [value]="g">{{ g }}</option>
-  </select> -->
-
-  <!-- בחירת ספר -->
-<!-- <label>ספר:</label>
-<select [(ngModel)]="newSuggestion.book" name="book" required [disabled]="booksFiltered.length === 0">
-  <option value="">בחר ספר</option>
-  <option *ngFor="let b of booksFiltered" [ngValue]="b">
-    {{ b.bookName }}
-  </option>
-</select> -->
-<!-- בחירת ספר -->
-<!-- <label>ספר:</label>
-<select [(ngModel)]="newSolution.book"
-        name="book"
-        required
-        [disabled]="booksFiltered.length === 0">
-  <option value="">בחר ספר</option>
-  <option *ngFor="let b of booksFiltered" [ngValue]="b">
-    {{ b.bookName }}
-  </option>
-</select>
-
-
-
-
-  <label for="page">עמוד:</label>
-  <input type="number" id="page" [(ngModel)]="newSolution.page" name="page" required />
-
-  <label for="exercise">תרגיל:</label>
-  <input type="number" id="exercise" [(ngModel)]="newSolution.exercise" name="exercise" required />
-
-  <label for="section">סעיף:</label>
-  <input type="number" id="section" [(ngModel)]="newSolution.section" name="section" required />
-
-  <label for="subSection">תת-סעיף:</label>
-  <input type="number" id="subSection" [(ngModel)]="newSolution.subSection" name="subSection" required />
-
-  <label for="content">תוכן פתרון:</label>
-  <textarea id="content" [(ngModel)]="newSolution.content" name="content" required></textarea>
-
-  <label for="image">תמונה (אופציונלי):</label>
-  <input type="file" id="image" (change)="onImageSelected($event)" />
-<div *ngIf ="previewUrl" class="preview-container">
-    <h4>תצוגה מקדימה:</h4>
-    <img [src]="previewUrl" alt="תצוגת תמונה" class="preview-img" />
-  </div>
- <button (click)="addSolution()" >הוספת פתרון:</button>
-</form> -->
 <form #AddForm="ngForm">
 
   <!-- בחירת מקצוע -->
@@ -143,7 +80,7 @@
     <img [src]="previewUrl" alt="תצוגת תמונה" class="preview-img" />
   </div>
 
-  <button (click)="addSolution()">הוספת פתרון</button>
+<button (click)="submitSolution()">הוספת פתרון</button>
 
 </form>
 

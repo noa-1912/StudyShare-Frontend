@@ -28,7 +28,7 @@ export class AddSolution {
   public selectedGrade: "ט" | "י" | "יא" | "יב" | "" = "";
   // 📘 ספרים מסוננים שיוצגו בתפריט האחרון
   public booksFiltered: BooksModel[] = [];
-
+public email: string = '';
   public newSolution: SolutionsModel = {
     page: 0,
     exercise: 0,
@@ -55,7 +55,7 @@ export class AddSolution {
     if (state?.solution) {
       const s = state.solution;
       this.isFromSolution = true;
-
+this.email = state.solution.user?.email || '';
       // ---- מילוי נתוני הבקשה ----
       this.newSolution.page = s.page;
       this.newSolution.exercise = s.exercise;
@@ -198,5 +198,67 @@ export class AddSolution {
     });
 
   }
+
+
+
+  
+  addSolutionWithEmail() {
+
+    // ---------------------
+    // 1) להביא את המשתמש
+    // ---------------------
+    const raw = localStorage.getItem("user");
+    if (!raw) {
+      alert("❌ לא נמצא משתמש מחובר");
+      return;
+    }
+
+    // // user הוא אובייקט אמיתי עכשיו
+    const user = JSON.parse(raw);
+
+
+    // // ---------------------
+    // // 2) לשלוח רק ID של user
+    // // ---------------------
+    this.newSolution.user = { id: user.id };
+
+    // ---------------------
+    // 3) לשלוח רק ID של book
+    // ---------------------
+
+    if (this.newSolution.book) {
+      this.newSolution.book = { id: this.newSolution.book.id } as any;
+    }
+
+    console.log("📤 solution we send:", this.newSolution);
+
+    // ---------------------
+    // 4) שליחה לשרת
+    // ---------------------
+    this._solutionsService.addWithEmail(this.newSolution, this.selectedFile||null,this.email).subscribe({
+      next: (res) => {
+        console.log("solution added:", res);
+        alert("✅ פתרון נוסף בהצלחה!");
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        console.log(err);
+        alert("❌ בקשה נכשלה — בדקי קונסול");
+      }
+    });
+
+  }
+
+
+  submitSolution() {
+  // אם לא נכנסנו מדף בקשה → שמירה רגילה ללא מייל
+  if (!this.isFromSolution) {
+    this.addSolution();
+  } 
+  // אם נכנסנו מדף בקשה → שמירה + שליחת מייל
+  else {
+    this.addSolutionWithEmail();
+  }
+}
 
 }
