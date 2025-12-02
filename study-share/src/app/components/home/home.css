@@ -2,28 +2,29 @@
   display: block;
   direction: rtl;
   font-family: 'Heebo', sans-serif;
-  background: #eef2ff; /* רקע כחול-לבנדר עדין */
+  background: #eef2ff;
   min-height: 100vh;
+  color: #0f172a;
 }
 
-/* 🔷 תפריט עליון */
+/* ================================
+   🔷 תפריט עליון
+================================ */
 .top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 2px;
+  padding: 15px 25px;
   background: #eef2ff;
- 
-  box-shadow: 0 3px 12px rgba(255, 255, 255, 0.1);
 }
 
 .logo {
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 900;
   color: #1e3a8a;
 }
 
-/* כפתורי התחברות/הרשמה */
+/* כפתורי הרשמה/התחברות */
 .auth-buttons button {
   margin-left: 10px;
   padding: 10px 20px;
@@ -31,12 +32,12 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
-  transition: .25s;
   font-weight: 600;
+  transition: 0.25s ease;
 }
 
 .login-btn {
-  background: #cbd5ff; /* לבנדר בהיר */
+  background: #cbd5ff;
   color: #1e3a8a;
 }
 
@@ -53,104 +54,391 @@
   background: #1d4ed8;
 }
 
-/* 🔷 אזור כותרת מרכזית */
+/* ================================
+   🔷 HERO – כותרת מרכזית
+================================ */
 .hero {
   text-align: center;
   margin-top: 40px;
 }
 
 .hero h2 {
-  color: #1e3a8a;
-  font-size: 38px;
+  font-size: 40px;
   font-weight: 900;
+  color: #1e3a8a;
 }
 
-.hero p {
-  font-size: 20px;
-  color: #27304b;
-  margin-top: 8px;
-  margin-bottom: 15px;
+/* ================================
+   🔷 קופסת אודות
+================================ */
+.about {
+  max-width: 800px;
+  margin: 60px auto 20px;
+  text-align: center;
 }
 
-/* כפתור אודות */
-.about-btn {
-  padding: 6px 12px;
-  background: linear-gradient(90deg, #1e40af, #3b82f6);
-  color: white;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+.about h3 {
+  font-size: 30px;
+  color: #1e3a8a;
+}
+
+.about p {
   font-size: 18px;
-  transition: .25s;
-  font-weight: 600;
+  color: #334155;
+  line-height: 1.8;
 }
 
-.about-btn:hover {
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
-  transform: translateY(-2px);
-}
-
-/* 🔷 כרטיסי מידע */
+/* ================================
+   🔷 קוביות פיצ'רים
+================================ */
 .features {
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin-top: 40px;
-  padding: 10px 10px;
   flex-wrap: wrap;
+  margin-top: 30px;
 }
 
-.feature-card {
-  background: #ffffff;
-  width: 280px;
+.feature {
+  background: white;
+  width: 260px;
   padding: 25px;
-  border-radius: 14px;
+  border-radius: 16px;
   text-align: center;
-  border-top: 5px solid #3b82f6; /* פס כחול יפה */
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-  transition: 0.2s;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: 0.25s;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
 }
 
-.feature-card h3 {
+.icon {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.feature h4 {
   color: #1e3a8a;
   font-size: 22px;
 }
 
-.feature-card p {
-  color: #374151;
-  margin-top: 10px;
-  font-size: 16px;
-}
-
-/* 📘 קופסת אודות */
-.about-box {
-  margin: 50px auto 20px;
-  max-width: 750px;
-  background: #ffffff;
-  padding: 35px 40px;
-  border-radius: 16px;
-
-  border-right: 6px solid #2563eb;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.12);
-
+/* ================================
+   🔷 "איך זה עובד"
+================================ */
+.steps {
+  margin-top: 80px;
   text-align: center;
 }
 
-.about-box h3 {
+.steps h3 {
+  font-size: 30px;
   color: #1e3a8a;
-  font-size: 24px;
-  margin-bottom: 12px;
+}
+
+.steps-grid {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.step {
+  width: 250px;
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.num {
+  width: 40px;
+  height: 40px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin: 0 auto 10px;
+}
+
+/* ================================
+   🔷 קריאה לפעולה (Callout)
+================================ */
+.callout {
+  margin: 80px auto;
+  padding: 40px;
+  text-align: center;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: white;
+  border-radius: 20px;
+  max-width: 900px;
+  box-shadow: 0 20px 40px rgba(79, 70, 229, 0.4);
+}
+
+.callout-btn {
+  margin-top: 20px;
+  padding: 12px 26px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: white;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.callout-btn:hover {
+  background: #e5e7eb;
+}
+
+
+
+/* 🔮 רקע כהה שקוף מאחורי הפופאפ */
+.ai-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  z-index: 999;
+}
+
+/* 🔮 תיבת הפופאפ */
+.ai-popup {
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 330px;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  z-index: 1000;
+  animation: fadeInPopup 0.25s ease-out;
+}
+
+/* אנימציית כניסה */
+@keyframes fadeInPopup {
+  from {
+    opacity: 0;
+    transform: translate(50%, -45%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(50%, -50%);
+  }
+}
+
+/* כפתור סגירה X */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* כפתור כניסה ל-AI בתוך הפופאפ */
+.go-ai-btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.go-ai-btn:hover {
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  transform: translateY(-2px);
+}
+
+/* כפתור הפתיחה בתוך ה-HERO */
+.ai-btn {
+  margin-top: 20px;
+  padding: 12px 26px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #1e3a8a;
+  color: white;
+  box-shadow: 0 6px 15px rgba(30, 58, 138, 0.35);
+  transition: .25s;
+}
+
+.ai-btn:hover {
+  background: #3b82f6;
+  transform: translateY(-3px);
+}
+
+/* שכבת רקע */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* תיבת הפופאפ */
+.popup-box {
+  background: white;
+  width: 350px;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  animation: popupZoom 0.3s ease;
+}
+
+/* כפתור X */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.close-btn:hover {
+  opacity: 1;
+}
+
+/* כפתורים */
+.popup-actions {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popup-actions button {
+  padding: 10px 0;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.popup-actions button:hover {
+  background: #1d4ed8;
+}
+
+/* אנימציות */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popupZoom {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+/* ===== FOOTER דיזיין מקצועי ===== */
+
+.footer {
+  background: #1e3a8a;
+  color: #ffffff;
+  padding-top: 40px;
+  margin-top: 80px;
+  font-family: 'Heebo', sans-serif;
+  border-top: 4px solid #3b82f6;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-section h2,
+.footer-section h3 {
+  margin-bottom: 15px;
+}
+
+.footer-section h2 {
+  font-size: 26px;
   font-weight: 800;
 }
 
-.about-box p {
-  color: #374151;
-  font-size: 18px;
-  line-height: 1.9;
-  font-weight: 500;
+.footer-section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 2px solid #bfdbfe;
+  padding-bottom: 5px;
+  width: fit-content;
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.footer-section a {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.footer-section a:hover {
+  color: #ffffff;
+  transform: translateX(-3px);
+}
+
+/* תחתית */
+.footer-bottom {
+  text-align: center;
+  padding: 18px 0;
+  margin-top: 20px;
+  background: #10275a;
+  font-size: 15px;
+  border-top: 1px solid rgba(255,255,255,0.25);
 }

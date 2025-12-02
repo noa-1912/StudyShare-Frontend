@@ -5,46 +5,145 @@
     <h1 class="logo">StudyShare 🎓</h1>
 
     <div class="auth-buttons">
-<button routerLink="/signin" class="login-btn">התחברות</button>
-<button routerLink="/signup" class="signup-btn">הרשמה</button>
-
+      <button routerLink="/signin" class="login-btn">התחברות</button>
+      <button routerLink="/signup" class="signup-btn">הרשמה</button>
     </div>
   </header>
 
   <!-- 🔷 כותרת מרכזית -->
   <section class="hero">
     <h2>ברוכים הבאים ל-StudyShare</h2>
-    
+
+    <!-- כפתור לפתיחת פופאפ AI -->
+    <button class="ai-btn" (click)="openAIPopup()">🤖 שאלי את ה-AI</button>
   </section>
 
-  <!-- 🔷 אודות האתר בקצרה -->
-  <section class="about-box">
-    <h3>📘 אודות StudyShare</h3>
+
+  <!-- 🔷 אודות -->
+  <section class="about">
+    <h3>מה זה StudyShare?</h3>
     <p>
-      StudyShare נבנה כדי לאפשר לתלמידים לשתף פתרונות, לבקש עזרה,
-      להגיב וללמוד יחד בצורה פשוטה, נוחה ומהירה.  
-      כל פתרון שאתם משתפים — עוזר לעוד מישהו להצליח 💙
+      StudyShare הוא פרויקט שנבנה במיוחד עבור תלמידים —
+      לשתף פתרונות, לשאול שאלות, להעלות בקשות, לעזור לאחרים
+      וללמוד ביחד בצורה פשוטה ונוחה.
     </p>
   </section>
 
-  <!-- 🔷 3 קוביות מידע -->
+  <!-- 🔷 פיצ'רים -->
   <section class="features">
 
-    <div class="feature-card">
-      <h3>📚 מאגר פתרונות</h3>
-      <p>מאות פתרונות שהועלו על ידי חברים — חפשו, סננו ולמדו.</p>
+    <div class="feature">
+      <div class="icon">📚</div>
+      <h4>מאגר פתרונות ענק</h4>
+      <p>חיפוש מהיר לפי מקצוע, ספר, עמוד ותרגיל.</p>
     </div>
 
-    <div class="feature-card">
-      <h3>💬 בקשות ותגובות</h3>
-      <p>לא מצאתם פתרון? בקשו חדש או הגיבו לאחרים.</p>
+    <div class="feature">
+      <div class="icon">💬</div>
+      <h4>בקשות ותגובות</h4>
+      <p>מצאתם טעות? רוצים פתרון נוסף? פשוט מגיבים.</p>
     </div>
 
-    <div class="feature-card">
-      <h3>🤝 קהילה שיתופית</h3>
-      <p>כל אחד יכול להוסיף פתרון ולעזור לאחרים — ביחד אנחנו מצליחים!</p>
+    <div class="feature">
+      <div class="icon">🤝</div>
+      <h4>קהילה תומכת</h4>
+      <p>כל פתרון שאתם מעלים — עוזר לתלמיד אחר.</p>
     </div>
 
   </section>
+
+  <!-- 🔷 איך זה עובד -->
+  <section class="steps">
+    <h3>איך זה עובד?</h3>
+
+    <div class="steps-grid">
+      <div class="step">
+        <div class="num">1</div>
+        <h4>נרשמים</h4>
+        <p>פתיחת משתמש ב־10 שניות.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h4>מוצאים או מבקשים</h4>
+        <p>חיפוש פתרונות או יצירת בקשה חדשה.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h4>לומדים ביחד</h4>
+        <p>מגיבים, משתפים ועוזרים לאחרים.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔷 קריאה לפעולה -->
+  <section class="callout">
+    <h3>מוכנים להתחיל?</h3>
+    <p>הצטרפו לעשרות תלמידים שכבר משתפים פתרונות ומקבלים עזרה.</p>
+
+    <button routerLink="/signup" class="btn callout-btn">להצטרפות</button>
+  </section>
+
+  <!-- 🔮 פופאפ AI -->
+  <div class="ai-overlay" *ngIf="showAIPopup" (click)="closeAIPopup()"></div>
+
+  <div class="ai-popup" *ngIf="showAIPopup">
+    <button class="close-btn" (click)="closeAIPopup()">✖</button>
+
+    <h2>🤖 עוזר הלמידה Study-AI</h2>
+    <p>
+      צריך עזרה בתרגיל? הסבר? תקציר?
+      תשאלי אותי כל דבר!
+    </p>
+
+    <button routerLink="/ai-chat" class="go-ai-btn">
+      כניסה ל-AI
+    </button>
+  </div>
+
+<!-- פופאפ האזור האישי -->
+<div *ngIf="user && showPopup" class="popup-overlay">
+  <div class="popup-box">
+    <button class="close-btn" (click)="closePopup()">✖</button>
+
+    <h3>היי {{ user.name }} 👋</h3>
+    <p>רוצה לראות את האזור האישי שלך?</p>
+
+    <div class="popup-actions">
+      <button routerLink="/my-solutions" (click)="closePopup()">הפתרונות שלי</button>
+      <button routerLink="/my-suggestions" (click)="closePopup()">הבקשות שלי</button>
+    </div>
+  </div>
+</div>
+
+  
+<footer class="footer">
+  <div class="footer-content">
+
+    <div class="footer-section brand">
+      <h2>StudyShare 🎓</h2>
+      <p>לומדים, משתפים ועוזרים אחד לשני.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h3>ניווט מהיר</h3>
+      <a routerLink="/search-solution">חיפוש פתרון</a>
+      <a routerLink="/suggestion-list">כל הבקשות</a>
+      <a routerLink="/signin">התחברות</a>
+      <a routerLink="/signup">הרשמה</a>
+    </div>
+
+    <div class="footer-section contact">
+      <h3>יצירת קשר</h3>
+      <p>✉ studyShare@gmail.com</p>
+      <p>📘 Instagram: StudyShare</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 StudyShare — כל הזכויות שמורות</p>
+  </div>
+</footer>
+
 
 </div>

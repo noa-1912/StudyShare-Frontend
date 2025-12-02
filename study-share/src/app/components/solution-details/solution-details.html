@@ -21,7 +21,7 @@
             {{ solutionToShow?.content }}
         </p>
 
-        <div *ngIf ="solutionToShow?.image" class="image-wrapper">
+        <div *ngIf="solutionToShow?.image" class="image-wrapper">
             <span class="label"></span>
             <img [src]="'data:image/jpeg;base64,' + solutionToShow?.image" class="preview-image"
                 (error)="onImageError($event)" />

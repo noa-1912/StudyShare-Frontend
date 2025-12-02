@@ -99,6 +99,12 @@ export class SolutionDetails {
 
   addComment() {
 
+        const raw = localStorage.getItem("user");
+    if (!raw) {
+      alert("❌ לא נמצא משתמש מחובר");
+      return;
+    }
+
     const user = JSON.parse(localStorage.getItem("user")!);
 
     const body = {
