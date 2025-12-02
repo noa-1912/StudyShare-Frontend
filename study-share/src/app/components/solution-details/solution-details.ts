@@ -24,52 +24,52 @@ export class SolutionDetails {
   public comments: CommentsModel[] = [];
   public canDelete = false;
 
+
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+
+      /* ---------------------------------------------------
+          שלב 1: טעינת תגובות + חישוב ממוצע דירוג
+      --------------------------------------------------- */
+      this.commentsService.getById(id).subscribe({
+        next: (res) => {
+          this.comments = res || [];
+          console.log("📌 Comments Loaded:", this.comments);
+
+          // חישוב ממוצע
+
+
+        },
+        error: err => console.log("שגיאה בטעינת תגובות:", err)
+      });
+
+
+      /* ---------------------------------------------------
+         📌 שלב 2: טעינת פרטי הפתרון
+      --------------------------------------------------- */
+      this.solutionService.getById(id).subscribe({
+        next: (res) => {
+          this.solutionToShow = res;
+
+          // זיהוי משתמש מחובר
+          const userStr = localStorage.getItem('user');
+          const loggedUser = userStr ? JSON.parse(userStr) : null;
+
+          // בדיקה אם בעל הפתרון = המשתמש המחובר
+          this.canDelete =
+            loggedUser && loggedUser.id === this.solutionToShow?.userDTO?.id;
+        },
+        error: err => console.log("שגיאה בטעינת הפתרון:", err)
+      });
+
+    });
+  }
   goBack() {
     this.router.navigate(['/solution-results']);
 
   }
-
-  ngOnInit(): void {
-  this.route.params.subscribe(params => {
-    const id = params['id'];
-
-    /* ---------------------------------------------------
-       📌 שלב 1: טעינת תגובות + חישוב ממוצע דירוג
-    --------------------------------------------------- */
-    this.commentsService.getById(id).subscribe({
-      next: (res) => {
-        this.comments = res || [];
-        console.log("📌 Comments Loaded:", this.comments);
-
-        // חישוב ממוצע
-        
-       
-      },
-      error: err => console.log("שגיאה בטעינת תגובות:", err)
-    });
-
-
-    /* ---------------------------------------------------
-       📌 שלב 2: טעינת פרטי הפתרון
-    --------------------------------------------------- */
-    this.solutionService.getById(id).subscribe({
-      next: (res) => {
-        this.solutionToShow = res;
-
-        // זיהוי משתמש מחובר
-        const userStr = localStorage.getItem('user');
-        const loggedUser = userStr ? JSON.parse(userStr) : null;
-
-        // בדיקה אם בעל הפתרון = המשתמש המחובר
-        this.canDelete =
-          loggedUser && loggedUser.id === this.solutionToShow?.userDTO?.id;
-      },
-      error: err => console.log("שגיאה בטעינת הפתרון:", err)
-    });
-
-  });
-}
-
   onImageError(event: any) {
     event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
   }
@@ -95,11 +95,11 @@ export class SolutionDetails {
 
 
   newCommentText = "";
-  newRating = 5;
+  newRating = 0;
 
   addComment() {
 
-        const raw = localStorage.getItem("user");
+    const raw = localStorage.getItem("user");
     if (!raw) {
       alert("❌ לא נמצא משתמש מחובר");
       return;
@@ -120,7 +120,7 @@ export class SolutionDetails {
       next: (saved) => {
         this.comments.push(saved);
         this.newCommentText = "";
-        this.newRating = 5;
+        this.newRating = 0;
       },
       error: err => console.log("❌ Error:", err)
     });

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SolutionsModel } from '../../models/solutions.model';
 import { SolutionSearchComponent } from '../solution-search/solution-search';
-import { Solutions } from '../solutions-list/solutions-list';
+
 
 @Component({
   selector: 'app-solution-results',

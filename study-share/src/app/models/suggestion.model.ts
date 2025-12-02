@@ -12,15 +12,15 @@ export class SuggestionModel {
   uploadDate?: Date;
   imagePath?: string;
 
-    user?: any;              // ← תואם ל- private Users user
-   userDTO?: UsersModel;  // מוצג במסך (שם, תמונה וכו')
+  user?: any;              // ← תואם ל- private Users user
+  userDTO?: UsersModel;  // מוצג במסך (שם, תמונה וכו')
 
-    book?: BooksModel;              // ← תואם ל- private Books book
+  book?: BooksModel;              // ← תואם ל- private Books book
 
   image?: string;
 
 
-  public constructor(page: number, exercise: number, section: number, subSection: number, content: string, uploadDate: Date, imagePath: string,  user: any, book: BooksModel, image :string) {
+  public constructor(page: number, exercise: number, section: number, subSection: number, content: string, uploadDate: Date, imagePath: string, user: any, book: BooksModel, image: string) {
     this.page = page;
     this.exercise = exercise;
     this.section = section;

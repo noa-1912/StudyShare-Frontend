@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class SuggestionDetails {
   public isUpdateSuggestion: boolean = false
   public suggestionToShow?: SuggestionModel
-  onDelete = output<void>();
+  // onDelete = output<void>();
 
   constructor(private route: ActivatedRoute, private suggestionService: SuggestionService, private router: Router) { }
   public canDelete = false;

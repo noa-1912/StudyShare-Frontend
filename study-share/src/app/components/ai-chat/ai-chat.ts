@@ -12,18 +12,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class AIChat {
 
-  // 📜 מערך כל ההודעות בשיחה (משתמש + AI)
+  //  מערך כל ההודעות בשיחה (משתמש + AI)
   messages: { sender: 'user' | 'ai', text: string }[] = [];
 
-  // ✏️ מה שהמשתמש מקליד
+  //  מה שהמשתמש מקליד
   inputMessage: string = '';
 
-  // 🆔 מזהה שיחה כדי שהבוט יזכור שיחות קודמות
+  //  מזהה שיחה כדי שהבוט יזכור שיחות קודמות
   conversationId: string = '';
 
   constructor(private aiService: AiChatService) {
 
-    // ⬇⬇⬇ כל הקוד הזה **צריך להיות בתוך** הקונסטרקטור
     let savedConversation = localStorage.getItem("aiConversation");
 
     if (!savedConversation) {
@@ -35,20 +34,7 @@ export class AIChat {
     this.conversationId = savedConversation;
   }
 
-  //   send() {
-  //     const text = this.inputMessage.trim();
-  //     if (!text) return;
 
-  //     this.messages.push({ sender: 'user', text });
-
-  // this.aiService.sendMessage(text, this.conversationId).subscribe({
-  //   next: (res) => this.messages.push({ sender: 'ai', text: res }),
-  //   error: (err) => console.error(err)
-  // });
-
-
-  //     this.inputMessage = '';
-  //   }
   send() {
     const text = this.inputMessage.trim();
     if (!text) return;

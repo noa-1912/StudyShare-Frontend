@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { SolutionsModel } from '../models/solutions.model';
-import { SolutionService } from '../service/solution-service';
+import { SolutionsModel } from '../../models/solutions.model';
+import { SolutionService } from '../../service/solution-service';
 
 
 @Component({

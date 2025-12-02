@@ -14,14 +14,9 @@ export class BooksModel {
     solutions: SolutionsModel[] = [];
     grade!: "ט" | "י" | "יא" | "יב"
 
-    // public constructor(bookName: string, author: string, description: string, subject: SubjectsModel) {
-    //     this.bookName = bookName
-    //     this.author = author
-    //     this.description = description
-    //     this.subject = subject
-    // }
 
-    constructor() {} // ← או פשוט למחוק לגמרי
+
+    constructor() { }
 
 
 

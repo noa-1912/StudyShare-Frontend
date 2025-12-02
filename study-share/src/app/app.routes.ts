@@ -12,7 +12,8 @@ import { SolutionResults } from './components/solution-results/solution-results'
 import { SolutionDetails } from './components/solution-details/solution-details';
 import { AIChat } from './components/ai-chat/ai-chat';
 import { MySuggestions } from './components/my-suggestions/my-suggestions';
-import { MySolutions } from './my-solutions/my-solutions';
+import { MySolutions } from './components/my-solutions/my-solutions';
+import { Footer } from './components/footer/footer';
 
 
 export const routes: Routes = [
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'ai-chat', component: AIChat },
   { path: 'my-suggestions', component: MySuggestions },
   { path: 'my-solutions', component: MySolutions },
+  { path: 'footer', component: Footer },
 
   { path: 'suggestion-list', component: SuggestionList },
   { path: 'search-solution', component: SolutionSearchComponent },

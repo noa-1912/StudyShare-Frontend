@@ -110,7 +110,7 @@ export class SolutionSearchComponent {
       next: (solutions) => {
         this.isSearching = false;
 
-        // ⭐ תיקון חובה — אם null → נהפוך לרשימה ריקה
+        //  תיקון חובה — אם null → נהפוך לרשימה ריקה
         this.results = solutions ?? [];
 
         this.notFound = this.results.length === 0;

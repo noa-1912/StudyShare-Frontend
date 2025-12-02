@@ -4,9 +4,9 @@ export class SubjectsModel {
 
     id!: number
     subjectName!: string
-   books:BooksModel[]=[];
-   public constructor() {
-        
+    books: BooksModel[] = [];
+    public constructor() {
+
     }
 
 

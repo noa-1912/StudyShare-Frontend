@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { SuggestionList } from './components/suggestion-list/suggestion-list';
 import { AddSuggestion } from "./components/add-suggestion/add-suggestion";
 import {  NavComponent } from './components/nav/nav';
+import { Footer } from "./components/footer/footer";
 @Component({
   selector: 'app-root',
   standalone: true, // חשוב!
-  imports: [RouterOutlet, NavComponent, NavComponent], // ✅ הוספנו את AddSuggestion
+  imports: [RouterOutlet, NavComponent, NavComponent, Footer], // ✅ הוספנו את AddSuggestion
   templateUrl: './app.html',
   styleUrl: './app.css' // ✅ הורדנו את הרווח
 })

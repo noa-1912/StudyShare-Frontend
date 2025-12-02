@@ -14,13 +14,10 @@ export class Home implements OnInit {
 
   user: UsersModel | null = null;
   showPopup = false;
-
+  showAIPopup = false;
   constructor(private userService: UsersService) { }
 
-  // ngOnInit(): void {
-  //   // כאן אפשר בעתיד להביא מידע על המשתמש המחובר מהשרת
-  //   this.user = JSON.parse(localStorage.getItem('user') || 'null');
-  // }
+
 
   ngOnInit(): void {
     //   // כאן אפשר  להביא מידע על המשתמש המחובר מהשרת
@@ -35,7 +32,9 @@ export class Home implements OnInit {
   }
 
 
-  showAIPopup = false;
+   closePopup() {
+    this.showPopup = false;
+  }
 
   openAIPopup() {
     this.showAIPopup = true;
@@ -45,12 +44,7 @@ export class Home implements OnInit {
     this.showAIPopup = false;
   }
 
-
-
-
-  closePopup() {
-    this.showPopup = false;
-  }
+ 
 
 
 }

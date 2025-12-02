@@ -1,35 +1,9 @@
-<!-- <h1>כל הבקשות</h1>
-
-@for (suggestion of suggestionArr; track $index) {
-<div class="suggestion">
-  <h2>שם: {{ suggestion.userDTO?.name}}</h2>
-
-  <h3>תוכן: {{ suggestion.content }}</h3>
-
-   <img
-      *ngIf="suggestion.userDTO?.image"
-      [src]="'data:image/jpeg;base64,' + suggestion.userDTO?.image"
-      alt="תמונה"
-      class="image-preview"
-      (error)="onImageError($event)"
-    />
-<img
-      *ngIf="suggestion.image"
-      [src]="'data:image/jpeg;base64,' + suggestion.image"
-      alt="תמונה"
-      class="image-preview"
-      (error)="onImageError($event)"
-    />
-</div>
-
-
-}<button (click)="addSuggestion1()">הוסף פתרון</button> -->
 <h1>כל הבקשות</h1>
 
 @for (suggestion of suggestionArr; track $index) {
 <div class="suggestion">
   <div class="user-info">
-    <img *ngIf ="suggestion.userDTO?.imagePath"
+    <img *ngIf="suggestion.userDTO?.imagePath"
       [src]="'http://localhost:8080/api/user/image/' + suggestion.userDTO?.imagePath" alt="תמונת משתמש" />
     <h2>{{ suggestion.userDTO?.name }}</h2>
   </div>
@@ -37,7 +11,7 @@
   <h3>תוכן: {{ suggestion.content }}</h3>
 
 
-<button (click)="showDetailes(suggestion)">פרטי בקשה</button>
+  <button (click)="showDetailes(suggestion)">פרטי בקשה</button>
 </div>
 }
 

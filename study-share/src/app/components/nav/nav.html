@@ -1,12 +1,15 @@
 <nav>
   <ul>
     <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">דף הבית</a></li>
-    <li><a routerLink="/add-suggestion" routerLinkActive="active">הוספת בקשה</a>|</li>
-    <li><a routerLink="/add-solution" routerLinkActive="active">הוספת פתרון</a>|</li>
-    <li><a routerLink="/search-solution" routerLinkActive="active">חיפוש פתרון</a>|</li>
-    <li><a routerLink="/suggestion-list" routerLinkActive="active">כל הבקשות</a>|</li>
-    <li><a routerLink="/my-suggestions" routerLinkActive="active">הבקשות שלי</a>|</li>
-    <li><a routerLink="/my-solutions" routerLinkActive="active">הפתרונות שלי</a></li>
+     <li *ngIf="isLoggedIn"><a routerLink="/my-suggestions" routerLinkActive="active">הבקשות שלי</a>|</li>
+    <li *ngIf="isLoggedIn"><a routerLink="/my-solutions" routerLinkActive="active">הפתרונות שלי</a></li> 
+      <li><a routerLink="/suggestion-list" routerLinkActive="active">כל הבקשות</a>|</li>
+    <li *ngIf="isLoggedIn"><a routerLink="/add-suggestion" routerLinkActive="active">הוספת בקשה</a>|</li>
+  <li ><a routerLink="/search-solution" routerLinkActive="active">חיפוש פתרון</a>|</li>
+    <li *ngIf="isLoggedIn"><a routerLink="/add-solution" routerLinkActive="active">הוספת פתרון</a>|</li>
+    
+   
+   
     <!-- <li><a routerLink="/ai-chat" routerLinkActive="active">מצב AI </a>|</li> -->
     <!-- <li><a routerLink="/signup" routerLinkActive="active">הרשמה</a>|</li>
     <li><a routerLink="/signin" routerLinkActive="active">התחברות</a>|</li> -->

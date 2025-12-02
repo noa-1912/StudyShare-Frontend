@@ -9,7 +9,7 @@
         <p dir="auto">{{ msg.text }}</p>
       </div>
 
-      <!-- הודעת AI -->
+      
 <!-- הודעת AI -->
 <div *ngIf ="msg.sender === 'ai'" class="ai-message bubble">
     <p dir="rtl" [innerHTML]="format(msg.text)"></p>

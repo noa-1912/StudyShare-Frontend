@@ -1,4 +1,3 @@
-import { Solutions } from "../components/solutions-list/solutions-list"
 import { CommentsModel } from "./comments.model"
 import { SolutionsModel } from "./solutions.model"
 import { SuggestionModel } from "./suggestion.model"
@@ -6,7 +5,6 @@ import { SuggestionModel } from "./suggestion.model"
 export class UsersModel {
 
     id!: number
-
     name!: string
     email!: string
     password!: string
@@ -14,8 +12,7 @@ export class UsersModel {
     solutions: SolutionsModel[] = [];
     suggestions: SuggestionModel[] = [];
     comments: CommentsModel[] = [];
-
-     imagePath?: string;      // שם קובץ (אם יש)
+    imagePath?: string;      // שם קובץ (אם יש)
     image?: string;          // בייס64 (לצפייה)
 
 
@@ -26,8 +23,8 @@ export class UsersModel {
         this.email = email
         this.password = password
         this.date = date
-        this.imagePath=imagePath
-        this.image=image
+        this.imagePath = imagePath
+        this.image = image
     }
     public constructorEmpty() { }
 

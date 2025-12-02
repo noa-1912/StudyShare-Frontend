@@ -16,21 +16,7 @@ export class MySuggestions {
   public suggestionArr: SuggestionModel[] = [];
   public suggestionArrFilter: SuggestionModel[] = [];
   constructor(private router: Router, private _suggestionService: SuggestionService) { }
-  //    this._suggestionService.getAll().subscribe({
-  //   next: (res) => {
-  //     this.suggestionArr = res;  // res הוא מערך
-  //     const count = this.suggestionArr.length;
-  //   },
-  //   error: (err) => console.error('Error loading suggestion:', err)
-  // });
-  // ngOnInit(): void {
-  //   this._suggestionService.getAll().subscribe({
-  //    next: (res) => (this.suggestionArr = res || []),
-  //     error: (err) => 
-  //       console.error('Error loading suggestion:', err)
 
-  //   })
-  // } 
   ngOnInit(): void {
     this._suggestionService.getAll().subscribe({
       next: (res) => {
@@ -64,16 +50,7 @@ export class MySuggestions {
     this.router.navigate(['/add-suggestion']);
     // 👆 מעביר אותך לעמוד הוספת הצעה חדשה
   }
-  // getImageSrc(base64: string | null, type: string = 'jpeg'): string {
-  //   if (!base64) {
-  //     return 'assets/no-image.jpg'; // תמונה ברירת מחדל
-  //   }
-  //   return `data:image/${type};base64,${base64}`;
-  // }
 
-  // onImageError(event: any) {
-  //   event.target.src = 'assets/broken-image.jpg';
-  // }
   onImageError(event: any) {
     event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
   }

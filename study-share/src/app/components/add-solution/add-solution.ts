@@ -28,7 +28,7 @@ export class AddSolution {
   public selectedGrade: "ט" | "י" | "יא" | "יב" | "" = "";
   // 📘 ספרים מסוננים שיוצגו בתפריט האחרון
   public booksFiltered: BooksModel[] = [];
-public email: string = '';
+  public email: string = '';
   public newSolution: SolutionsModel = {
     page: 0,
     exercise: 0,
@@ -36,10 +36,10 @@ public email: string = '';
     subSection: 0,
     content: '',
     uploadDate: new Date(),
-    imagePath: '',//לבדוק
-    user: undefined,//לבדוק
-    book: undefined//לבדוק
-  };
+    imagePath: '',
+    user: undefined,
+    book: undefined 
+   };
 
   constructor(private router: Router, private _solutionsService: SolutionService, private _booksService: BooksService) { }
   previewUrl: string | ArrayBuffer | null = null;
@@ -201,7 +201,7 @@ public email: string = '';
 
 
 
-  
+
   addSolutionWithEmail() {
 
     // ---------------------
@@ -238,7 +238,7 @@ public email: string = '';
     console.log("📧 THE EMAIL WE SEND:", this.email);
 
 
-    this._solutionsService.addWithEmail(this.newSolution, this.selectedFile||null,this.email).subscribe({
+    this._solutionsService.addWithEmail(this.newSolution, this.selectedFile || null, this.email).subscribe({
       next: (res) => {
         console.log("solution added:", res);
         alert("✅ פתרון נוסף בהצלחה!");
@@ -254,14 +254,14 @@ public email: string = '';
 
 
   submitSolution() {
-  // אם לא נכנסנו מדף בקשה → שמירה רגילה ללא מייל
-  if (!this.isFromSolution) {
-    this.addSolution();
-  } 
-  // אם נכנסנו מדף בקשה → שמירה + שליחת מייל
-  else {
-    this.addSolutionWithEmail();
+    // אם לא נכנסנו מדף בקשה → שמירה רגילה ללא מייל
+    if (!this.isFromSolution) {
+      this.addSolution();
+    }
+    // אם נכנסנו מדף בקשה → שמירה + שליחת מייל
+    else {
+      this.addSolutionWithEmail();
+    }
   }
-}
 
 }
