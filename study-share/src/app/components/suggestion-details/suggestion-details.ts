@@ -49,6 +49,7 @@ export class SuggestionDetails {
   onImageError(event: any) {
     event.target.src = 'assets/broken-image.jpg'; // תמונת ברירת מחדל
   }
+  
   delete() {
 
     if (!this.suggestionToShow || !this.suggestionToShow.id) {

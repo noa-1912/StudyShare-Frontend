@@ -24,9 +24,6 @@ export class AiChatService {
     });
   }
 
-
-
-
   streamMessage(message: string, conversationId: string): Observable<string> {
 
     return new Observable(observer => {

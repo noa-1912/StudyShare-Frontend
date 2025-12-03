@@ -21,13 +21,8 @@ export class MySuggestions {
     this._suggestionService.getAll().subscribe({
       next: (res) => {
 
-
-
         this.suggestionArr = res || [];
         console.log("🔵 כל הבקשות מהשרת:", this.suggestionArr);
-
-
-
         const userStr = localStorage.getItem('user');
         const user = userStr ? JSON.parse(userStr) : null;
 

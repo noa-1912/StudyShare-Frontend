@@ -21,40 +21,8 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }//מטרת הבנאי היא לבדוק אם המשתמש קיים בשרת
 
-  // signin(email: string, password: string): Observable<UsersModel> {//פונקציה זו מתחברת את המשתמש לשרת
 
-  //   return this.http.post<UsersModel>(`http://localhost:8080/api/user/signin`, { email, password },  {
-  //       responseType: 'text' , // כאן תשאירי בלי 'as json'
-  //       withCredentials: true // חשוב כדי שה-cookie יישמר
-  //     });// מבצע קריאה לשרת עם שם המשתמש והסיסמה
-
-  // }
-  //התחברות
-  signin(email: string, password: string): Observable<UsersModel> {
-    return this.http.post<UsersModel>(
-      'http://localhost:8080/api/user/signin',
-      { email, password },   // מה נשלח לשרת
-      {
-        withCredentials: true            // מאפשר שליחה ושמירה של cookie
-      }
-    );
-  }
-
-
-
-  //   signup(name: string, password: string, email: string, file?: File): Observable<UsersModel> {// פונקציה זו נועדה לרשום משתמש חדש
-  //  const formData = new FormData();
-  //     // מצרפים את התמונה אם יש
-  //     if (file) {
-  //       formData.append('image', file); // תואם ל-@RequestPart("image")
-  //     }
-  //     formData.append(
-  //       'user',
-  //       new Blob([JSON.stringify(UsersModel)], { type: 'application/json' })
-  //     );
-  //     return this.http.post<UsersModel>(`http://localhost:8080/api/user/signup`, { name, password, email,formData });// מבצע קריאה לשרת כדי לרשום משתמש חדש
-
-  //   }
+  
   //הרשמות
   signup(name: string, password: string, email: string, file?: File): Observable<UsersModel> {
     const formData = new FormData();
@@ -68,6 +36,20 @@ export class UsersService {
 
     return this.http.post<UsersModel>('http://localhost:8080/api/user/signup', formData);
   }
+
+  
+  //התחברות
+  signin(email: string, password: string): Observable<UsersModel> {
+    return this.http.post<UsersModel>(
+      'http://localhost:8080/api/user/signin',
+      { email, password },   // מה נשלח לשרת
+      {
+        withCredentials: true            // מאפשר שליחה ושמירה של cookie
+      }
+    );
+  }
+
+
 
   //התנתקות
   signout(): Observable<any> {

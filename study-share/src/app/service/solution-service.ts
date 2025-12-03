@@ -10,7 +10,7 @@ export class SolutionService {
 
   private apiUrl = 'http://localhost:8080/api/solution';
 
-  // נוסיף שמירת נתוני חיפוש
+  // נוסיף שמירת נתוני חיפוש בשביל שימוש עתידי כשנרצה לטעון את התוצאות האחרונות
   public lastSearchCriteria?: {
     bookId: number;
     page: number;
@@ -41,22 +41,6 @@ export class SolutionService {
     console.log(id);
     return this._httpClient.delete<any>(`http://localhost:8080/api/solution/deleteSolution/${id}`);
   }
-
-
-
-
-  // // אם בעתיד תרצי הוספת פתרון
-  // add(solution: any, file?: File): Observable<any> {
-  //   const formData = new FormData();
-  //   formData.append('solution', new Blob([JSON.stringify(solution)], { type: 'application/json' }));
-
-  //   if (file) formData.append('image', file);
-
-  //   return this.http.post(`${this.apiUrl}/add`, formData);
-  // }
-
-
-
 
 
   add(solution: SolutionsModel, file?: File): Observable<SolutionsModel> {

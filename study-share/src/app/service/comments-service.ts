@@ -9,7 +9,7 @@ import { CommentsModel } from '../models/comments.model';
 
 
 export class CommentsService {
-  
+
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -18,11 +18,11 @@ export class CommentsService {
   }
 
 
-  
-    add(comments: any): Observable<CommentsModel> {
 
-      return this._httpClient.post<CommentsModel>('http://localhost:8080/api/comments/uploadComment', comments);
-    }
+  add(comments: any): Observable<CommentsModel> {
+
+    return this._httpClient.post<CommentsModel>('http://localhost:8080/api/comments/uploadComment', comments);
+  }
 
 
 

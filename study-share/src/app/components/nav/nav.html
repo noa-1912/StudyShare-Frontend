@@ -1,23 +1,26 @@
 <nav>
-  <ul>
+
+  <!-- צד שמאל — תמיד קיים -->
+  <div class="left-side">
+    <button *ngIf="isLoggedIn"
+            (click)="onSignOut()"
+            class="logout-btn">
+      התנתקות
+    </button>
+  </div>
+
+  <!-- תפריט מרכז -->
+  <ul class="center-menu">
     <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">דף הבית</a></li>
-     <li *ngIf="isLoggedIn"><a routerLink="/my-suggestions" routerLinkActive="active">הבקשות שלי</a>|</li>
-    <li *ngIf="isLoggedIn"><a routerLink="/my-solutions" routerLinkActive="active">הפתרונות שלי</a></li> 
-      <li><a routerLink="/suggestion-list" routerLinkActive="active">כל הבקשות</a>|</li>
-    <li *ngIf="isLoggedIn"><a routerLink="/add-suggestion" routerLinkActive="active">הוספת בקשה</a>|</li>
-  <li ><a routerLink="/search-solution" routerLinkActive="active">חיפוש פתרון</a>|</li>
-    <li *ngIf="isLoggedIn"><a routerLink="/add-solution" routerLinkActive="active">הוספת פתרון</a>|</li>
-    
-   
-   
-    <!-- <li><a routerLink="/ai-chat" routerLinkActive="active">מצב AI </a>|</li> -->
-    <!-- <li><a routerLink="/signup" routerLinkActive="active">הרשמה</a>|</li>
-    <li><a routerLink="/signin" routerLinkActive="active">התחברות</a>|</li> -->
-    <!-- <li><a routerLink="/login" routerLinkActive="active">התחברות</a>|</li>
-    <li><a routerLink="/signup" routerLinkActive="active">הרשמה</a></li> -->
+    <li *ngIf="isLoggedIn"><a routerLink="/my-suggestions" routerLinkActive="active">הבקשות שלי</a></li>
+    <li *ngIf="isLoggedIn"><a routerLink="/my-solutions" routerLinkActive="active">הפתרונות שלי</a></li>
+    <li><a routerLink="/suggestion-list" routerLinkActive="active">כל הבקשות</a></li>
+    <li *ngIf="isLoggedIn"><a routerLink="/add-suggestion" routerLinkActive="active">הוספת בקשה</a></li>
+    <li><a routerLink="/search-solution" routerLinkActive="active">חיפוש פתרון</a></li>
+    <li *ngIf="isLoggedIn"><a routerLink="/add-solution" routerLinkActive="active">הוספת פתרון</a></li>
   </ul>
 
-  <li *ngIf="isLoggedIn">
-    <button (click)="onSignOut()" class="logout-btn">התנתקות</button>
-  </li>
+  <!-- צד ימין — תמיד קיים -->
+  <div class="right-side"></div>
+
 </nav>

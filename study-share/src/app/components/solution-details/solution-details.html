@@ -32,7 +32,6 @@
     <button class="back-btn" (click)="goBack()">חזרה לרשימת הפתרונות</button>
 
 
-
     <!-- 🔷 הוספת תגובה -->
 <div class="add-comment-box">
   <textarea [(ngModel)]="newCommentText" placeholder="הוספת תגובה..." rows="3"></textarea>
@@ -51,6 +50,7 @@
   <p class="rating">⭐ דירוג: {{ c.ratingValue }}/10</p>
   <p class="date">📅 {{ c.commentDate | date:"dd/MM/yy" }}</p>
 </div>
+
 
 
 

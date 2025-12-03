@@ -109,24 +109,14 @@ export class SolutionSearchComponent {
     this._solutionService.searchSolution(criteria.bookId, criteria.page, criteria.exercise).subscribe({
       next: (solutions) => {
         this.isSearching = false;
-
         //  תיקון חובה — אם null → נהפוך לרשימה ריקה
         this.results = solutions ?? [];
 
         this.notFound = this.results.length === 0;
-        this._solutionService.lastSearchResults = this.results;
+        this._solutionService.lastSearchResults = this.results;//פונקציה זו שומרת את תוצאות החיפוש בשרת
 
-        if (this.notFound) {
-          this.router.navigate(['/solution-results']),{
-            state: {
-              noResult: true,              // ← תואם למה שנשתמש ברכיב התוצאות
-              bookId: criteria.bookId,
-              page: criteria.page,
-              exercise: criteria.exercise,
-              section: criteria.section,
-              subSection: criteria.subSection
-            }
-          };
+        if (this.notFound) {// אין תוצאות
+          this.router.navigate(['/solution-results']);
 
         }
         else {

@@ -32,11 +32,10 @@ export class SolutionResults {
   ngOnInit() {
 
     this.solutions = this._solutionsService.lastSearchResults ?? [];
-
     const c = this._solutionsService.lastSearchCriteria;
     console.log("📌 Criteria Loaded:", c);
 
-    if (c) {
+    if (c) {// מילוי נתוני החיפוש
       this.bookId = c.bookId;
       this.page = c.page;
       this.exercise = c.exercise;
@@ -53,10 +52,10 @@ export class SolutionResults {
     }
     this.router.navigate(['/solution-details', s.id]);
   }
-roundStars(avg: number | undefined): number {
-  if (!avg || avg <= 0) return 0;
-  return Math.round(avg / 2);
-}
+  roundStars(avg: number | undefined): number {
+    if (!avg || avg <= 0) return 0;
+    return Math.round(avg / 2);
+  }
 
 
 

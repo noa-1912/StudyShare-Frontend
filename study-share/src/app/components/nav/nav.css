@@ -1,72 +1,126 @@
+/* ===== בסיס NAV ===== */
 nav {
-  background-color: #1e3a8a; /* כחול עמוק כמו הכותרת הראשית של דף הבית */
-  padding: 14px 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #1e3a8a;
+  padding: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   direction: rtl;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* שמאל – מרכז – ימין */
 }
 
-nav ul {
+/* צד שמאל - כפתור */
+.left-side {
+  min-width: 180px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* צד ימין ריק */
+.right-side {
+  min-width: 180px;
+}
+
+/* תפריט מרכזי */
+.center-menu {
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: center;  /* מרכז אמיתי */
   align-items: center;
+  gap: 40px;
   margin: 0;
   padding: 0;
-  gap: 28px; /* יותר רווח בין הפריטים */
 }
 
-nav li {
-  display: inline;
+.center-menu li {
+  display: flex;
+  align-items: center;
 }
 
+/* מפריד | */
+.center-menu li:not(:last-child)::after {
+  content: "|";
+  margin: 0 10px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+}
+
+/* קישורים */
 nav a {
   text-decoration: none;
-  color: #f2f6ff; /* טקסט לבן עדין */
-  font-size: 18px;
-  font-weight: 500;
-  padding: 8px 10px;
+  color: #f2f6ff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 8px 12px;
   border-radius: 8px;
   transition: all 0.25s ease;
 }
 
 nav a:hover {
-  background-color: rgba(255, 255, 255, 0.15); /* הדגשה רכה במעבר */
-  color: #ffffff;
-  transform: translateY(-2px); /* תנועה עדינה */
+  background-color: rgba(255,255,255,0.15);
+  color: white;
+  transform: translateY(-2px);
 }
 
-nav a.active {
-  border-bottom: 2px solid #f8fafc; /* סימון קו תחתון לעמוד הנוכחי */
-  color: #ffffff;
-  font-weight: 600;
-}
-
-/* מפריד עדין אחד בלבד בין קישורים */
-nav li:not(:last-child)::after {
-  content: "|";
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0 10px;
-  font-weight: 300;
-}
-/* עיצוב נוסף רק לכפתור התנתקות */
+/* כפתור התנתקות */
 .logout-btn {
-  position: absolute;
-  top: 14px;
-  left: 30px; /* אם את רוצה בצד ימין תשני ל-right */
   background-color: #f8fafc;
   color: #1e3a8a;
   border: none;
-  padding: 8px 18px;
+  padding: 10px 22px;
   border-radius: 25px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   transition: all 0.25s ease;
 }
 
 .logout-btn:hover {
   background-color: #1e3a8a;
-  color: #ffffff;
+  color: #fff;
   transform: translateY(-2px);
+}
+
+/* ============================= */
+/* ===== רספונסיביות אמיתית ===== */
+/* ============================= */
+
+@media (max-width: 900px) {
+
+  /* המבנה הופך לעמודה */
+  nav {
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 0;
+  }
+
+  .left-side,
+  .right-side {
+    min-width: auto; /* כבר לא צריך איזון */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* התפריט עובר לאנכי */
+  .center-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .center-menu li:not(:last-child)::after {
+    content: ""; /* מבטלים את ה־| בטלפון */
+  }
+
+  nav a {
+    font-size: 18px;
+    padding: 6px 10px;
+  }
+
+  .logout-btn {
+    margin-top: 8px;
+    width: 170px;
+  }
 }
